@@ -136,6 +136,8 @@ timeline
 │   └── assets/
 │       ├── images/
 │       └── papers/                # Encrypted archives only
+├── scripts/
+│   └── check-js.sh                # Local JavaScript syntax checker
 ├── IMPLEMENTATION_GUIDE.md
 └── README.md
 ```
@@ -170,9 +172,24 @@ Use GitHub Pages branch deployment:
 
 ---
 
+## Local JavaScript Syntax Check
+
+Run one command from the repository root:
+
+```bash
+bash scripts/check-js.sh
+```
+
+Optional custom Node binary:
+
+```bash
+NODE_BIN=/absolute/path/to/node bash scripts/check-js.sh
+```
+
+---
+
 ## Primary Links
 
 - Research-1 website: <https://anis151993.github.io/Serverless-Intelligent-Firewall-Research-1/>
 - Research-1 repository: <https://github.com/ANIS151993/Serverless-Intelligent-Firewall-Research-1>
 - Research-2 website: <https://anis151993.github.io/Serverless-Intelligent-Firewall-Research-2/>
-
