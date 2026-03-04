@@ -838,6 +838,92 @@ textarea {
   border: 1px solid rgba(23, 57, 92, 0.08);
 }
 
+.architecture-compact-shell {
+  margin-top: 26px;
+  display: grid;
+  gap: 16px;
+}
+
+.architecture-top-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 1fr);
+  align-items: start;
+}
+
+.architecture-figure.architecture-figure-compact {
+  padding: 14px;
+}
+
+.architecture-pill-row {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.architecture-narrative {
+  padding: 16px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(180deg, #fffefb 0%, #f7f2e8 100%);
+  border: 1px solid rgba(216, 207, 191, 0.86);
+  box-shadow: var(--shadow-sm);
+}
+
+.architecture-narrative h3 {
+  margin: 0 0 8px;
+  color: var(--brand);
+}
+
+.architecture-narrative p {
+  margin: 0 0 8px;
+  color: var(--ink-soft);
+}
+
+.architecture-mode-row {
+  margin-top: 10px;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.architecture-mode-btn {
+  border: 1px solid rgba(23, 57, 92, 0.16);
+  background: #f6f2e8;
+  color: var(--brand);
+  border-radius: 10px;
+  padding: 8px 10px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.16s ease, border-color 0.16s ease, background 0.16s ease;
+}
+
+.architecture-mode-btn:hover,
+.architecture-mode-btn.is-active {
+  background: linear-gradient(180deg, #ffffff 0%, #edf4fb 100%);
+  border-color: rgba(40, 95, 143, 0.5);
+  transform: translateY(-1px);
+}
+
+.architecture-mode-card {
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 10px;
+  background: #fafcfe;
+  border: 1px solid rgba(40, 95, 143, 0.15);
+}
+
+.architecture-mode-card h4 {
+  margin: 0 0 8px;
+  color: var(--brand);
+}
+
+.architecture-mode-card p {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
 .caption {
   margin-top: 10px;
   color: var(--ink-soft);
@@ -875,6 +961,11 @@ textarea {
   background: #fff;
   box-shadow: var(--shadow-sm);
   padding: 18px;
+}
+
+.compact-headline {
+  margin: 0 0 10px;
+  color: var(--brand);
 }
 
 .arch-node-grid {
@@ -1746,6 +1837,7 @@ textarea {
   .profile-grid,
   .poster-grid,
   .architecture-grid,
+  .architecture-top-grid,
   .linkage-grid,
   .implementation-grid,
   .video-interactive-grid,
@@ -1758,6 +1850,7 @@ textarea {
   .report-columns,
   .implementation-roadmap,
   .arch-node-grid,
+  .architecture-mode-row,
   .video-chapter-buttons,
   .video-flow-rail,
   .split-callout,
