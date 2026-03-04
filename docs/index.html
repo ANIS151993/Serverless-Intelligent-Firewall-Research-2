@@ -342,97 +342,88 @@
         <p class="section-kicker">Architecture</p>
         <h2 class="section-title">Cross-cloud adaptive security flow</h2>
         <p class="section-subtitle">
-          The architecture separates detection, orchestration, and policy governance so each cloud can respond locally while remaining under a single zero-trust policy model.
+          This section is now compact but deeper: switch architecture views, inspect each stage, and read implementation-oriented descriptions without scrolling through oversized static blocks.
         </p>
 
-        <div class="architecture-grid">
-          <div class="architecture-figure">
-            <img src="assets/images/system-architecture.png" alt="SIF-CCA system architecture diagram">
-            <p class="caption">
-              Proposed SIF-CCA architecture from the manuscript. The system combines an AI-driven detection and response engine, serverless orchestration, and a unified control plane spanning AWS, Azure, and GCP.
-            </p>
+        <div class="architecture-compact-shell">
+          <div class="architecture-top-grid">
+            <div class="architecture-figure architecture-figure-compact">
+              <img src="assets/images/system-architecture.png" alt="SIF-CCA system architecture diagram">
+              <p class="caption">
+                SIF-CCA joins AI detection, serverless response orchestration, and a unified zero-trust control plane across AWS, Azure, and GCP.
+              </p>
+              <div class="architecture-pill-row">
+                <span class="pill">Hybrid AI core</span>
+                <span class="pill">Cross-cloud runtime</span>
+                <span class="pill">Unified policy plane</span>
+              </div>
+            </div>
+
+            <article class="architecture-narrative">
+              <h3>Architecture brief</h3>
+              <p>
+                SIF-CCA operates as a closed loop: telemetry ingestion, model-driven classification, provider-specific response, and policy enforcement feedback. This design keeps runtime security adaptive while preserving auditable governance.
+              </p>
+              <p>
+                Unlike a static firewall chain, each decision is context-aware and identity-aware. The control plane remains vendor-agnostic so policy continuity survives provider failover and workload migration.
+              </p>
+
+              <div class="architecture-mode-row">
+                <button class="architecture-mode-btn is-active" type="button" data-arch-mode="logical">Logical view</button>
+                <button class="architecture-mode-btn" type="button" data-arch-mode="dataflow">Data-flow view</button>
+                <button class="architecture-mode-btn" type="button" data-arch-mode="deployment">Deployment view</button>
+              </div>
+
+              <article class="architecture-mode-card">
+                <h4 id="arch-mode-title">Logical architecture view</h4>
+                <p id="arch-mode-text">
+                  The system is organized into four stable layers: ingestion, detection, orchestration, and policy. Each layer can evolve independently without breaking the full security loop.
+                </p>
+                <ul class="arch-detail-list" id="arch-mode-list">
+                  <li>Layered separation keeps the platform maintainable.</li>
+                  <li>Detection quality can improve without policy rewrites.</li>
+                  <li>Policy enforcement remains cloud-agnostic and centralized.</li>
+                </ul>
+              </article>
+            </article>
           </div>
 
-          <div class="mini-grid">
-            <article class="mini-card">
-              <h4>1. AI-driven detection and response</h4>
-              <p>
-                XGBoost learns high-value feature interactions while BiGRU captures temporal attack behavior. Their fusion layer improves precision without losing recall on noisy cloud traffic.
+          <div class="arch-explorer">
+            <h3 class="compact-headline">Stage-by-stage interactive explorer</h3>
+            <div class="arch-node-grid">
+              <button class="arch-node is-active" type="button" data-arch-node="ingestion">
+                <strong>Phase 1</strong>
+                <span>Traffic ingestion</span>
+              </button>
+              <button class="arch-node" type="button" data-arch-node="feature">
+                <strong>Phase 2</strong>
+                <span>Feature fusion</span>
+              </button>
+              <button class="arch-node" type="button" data-arch-node="detection">
+                <strong>Phase 3</strong>
+                <span>Threat detection</span>
+              </button>
+              <button class="arch-node" type="button" data-arch-node="orchestration">
+                <strong>Phase 4</strong>
+                <span>Cloud response</span>
+              </button>
+              <button class="arch-node" type="button" data-arch-node="policy">
+                <strong>Phase 5</strong>
+                <span>Zero-trust policy</span>
+              </button>
+            </div>
+            <article class="arch-detail-card">
+              <h3 id="arch-detail-title">Traffic ingestion and context capture</h3>
+              <p id="arch-detail-text">
+                Stream network telemetry and function-level events into the SIF pipeline while preserving cloud-origin metadata for policy-aware downstream analysis.
               </p>
-            </article>
-            <article class="mini-card">
-              <h4>2. Serverless orchestration layer</h4>
-              <p>
-                Event-driven functions execute detection, classification, and mitigation across cloud providers. The design targets low operational overhead and scale-to-zero efficiency.
-              </p>
-            </article>
-            <article class="mini-card">
-              <h4>3. Unified zero-trust control plane</h4>
-              <p>
-                Policy-as-code, identity abstraction, and service-to-service validation keep enforcement consistent even when workloads shift across providers.
-              </p>
-            </article>
-            <article class="mini-card">
-              <h4>4. Cloud-agnostic deployment path</h4>
-              <p>
-                SIF-CCA avoids provider lock-in by routing policy, telemetry, and response events through normalized cross-cloud interfaces rather than vendor-specific point logic.
-              </p>
+              <ul class="arch-detail-list" id="arch-detail-list">
+                <li>Collect flow features and invocation metadata.</li>
+                <li>Attach cloud provider and identity context.</li>
+                <li>Forward normalized records into detection modules.</li>
+              </ul>
             </article>
           </div>
-        </div>
-
-        <div class="arch-explorer">
-          <div class="arch-node-grid">
-            <button class="arch-node is-active" type="button" data-arch-node="ingestion">
-              <strong>Phase 1</strong>
-              <span>Traffic ingestion</span>
-            </button>
-            <button class="arch-node" type="button" data-arch-node="feature">
-              <strong>Phase 2</strong>
-              <span>Feature fusion</span>
-            </button>
-            <button class="arch-node" type="button" data-arch-node="detection">
-              <strong>Phase 3</strong>
-              <span>Threat detection</span>
-            </button>
-            <button class="arch-node" type="button" data-arch-node="orchestration">
-              <strong>Phase 4</strong>
-              <span>Cloud response</span>
-            </button>
-            <button class="arch-node" type="button" data-arch-node="policy">
-              <strong>Phase 5</strong>
-              <span>Zero-trust policy</span>
-            </button>
-          </div>
-          <article class="arch-detail-card">
-            <h3 id="arch-detail-title">Traffic ingestion and context capture</h3>
-            <p id="arch-detail-text">
-              Stream network telemetry and function-level events into the SIF pipeline while preserving cloud-origin metadata for policy-aware downstream analysis.
-            </p>
-            <ul class="arch-detail-list" id="arch-detail-list">
-              <li>Collect flow features and invocation metadata.</li>
-              <li>Attach cloud provider and identity context.</li>
-              <li>Forward normalized records into detection modules.</li>
-            </ul>
-          </article>
-        </div>
-
-        <div class="figure-grid">
-          <article class="figure-card">
-            <h3>Control plane view</h3>
-            <img src="assets/images/control-plane-diagram.png" alt="Unified control plane diagram">
-            <p class="caption">A simplified view of the unified control plane linking the firewall core to AWS, Azure, and GCP.</p>
-          </article>
-          <article class="figure-card">
-            <h3>Confusion matrix</h3>
-            <img src="assets/images/confusion-matrix.png" alt="Confusion matrix">
-            <p class="caption">BENIGN, DDoS, DoS, Other, and PortScan classes show a strong diagonal with limited misclassification.</p>
-          </article>
-          <article class="figure-card">
-            <h3>ROC comparison</h3>
-            <img src="assets/images/roc-curve.png" alt="ROC curve comparison">
-            <p class="caption">The proposed SIF-CCA model reaches the strongest ROC curve among the evaluated baselines.</p>
-          </article>
         </div>
       </div>
     </section>
