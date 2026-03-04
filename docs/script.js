@@ -395,6 +395,44 @@ function initArchitectureExplorer() {
   setArchitectureNode("ingestion");
 }
 
+function initVideoInteractive() {
+  const player = byId("overview-video-player");
+  const buttons = document.querySelectorAll(".video-chapter-btn");
+  if (!player || !buttons.length) {
+    return;
+  }
+
+  const title = byId("video-chapter-title");
+  const note = byId("video-chapter-note");
+  const flowNodes = document.querySelectorAll(".video-flow-node");
+  const base = "https://www.youtube.com/embed/O_pLEz7cyaY";
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      buttons.forEach((b) => b.classList.remove("is-active"));
+      button.classList.add("is-active");
+
+      const start = button.dataset.videoStart || "0";
+      const chapterTitle = button.dataset.videoTitle || "";
+      const chapterNote = button.dataset.videoNote || "";
+      const node = button.dataset.videoNode || "";
+
+      player.src = `${base}?start=${encodeURIComponent(start)}&autoplay=1&rel=0`;
+
+      if (title) {
+        title.textContent = chapterTitle;
+      }
+      if (note) {
+        note.textContent = chapterNote;
+      }
+
+      flowNodes.forEach((chip) => {
+        chip.classList.toggle("is-active", chip.dataset.videoNode === node);
+      });
+    });
+  });
+}
+
 function initReveal() {
   const targets = document.querySelectorAll(
     ".hero-sidecard, .metric-card, .card, .resource-card, .figure-card, .chart-card, .mini-card, .work-card, .research-bridge, .guide-callout, .roadmap-step, .architecture-figure, .paper-sheet, .policy-card"
@@ -830,6 +868,7 @@ function bindActions() {
 document.addEventListener("DOMContentLoaded", () => {
   bindActions();
   initReveal();
+  initVideoInteractive();
   syncGateButtons();
   runSimulation();
   initArchitectureExplorer();
