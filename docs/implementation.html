@@ -22,6 +22,7 @@
         <li><a href="#combined">Combined Model</a></li>
         <li><a href="#blueprint">Blueprint</a></li>
         <li><a href="#steps">Implementation</a></li>
+        <li><a href="#protection">Protection Policy</a></li>
         <li><a href="#ops">Operations</a></li>
       </ul>
     </div>
@@ -198,6 +199,34 @@
         </div>
       </section>
 
+      <section class="report-section" id="protection">
+        <h2>Protection policy for full implementation assets</h2>
+        <div class="report-columns">
+          <article class="report-panel">
+            <h3>Policy requirements</h3>
+            <ol class="report-list">
+              <li>Follow the author on GitHub: <a href="https://github.com/ANIS151993" target="_blank" rel="noreferrer">github.com/ANIS151993</a>.</li>
+              <li>Review and subscribe through the overview video channel: <a href="https://youtu.be/O_pLEz7cyaY" target="_blank" rel="noreferrer">YouTube overview</a>.</li>
+              <li>Request the password by email before download access is granted.</li>
+              <li>Use the password in the secure gate to reveal encrypted archive links.</li>
+            </ol>
+          </article>
+          <article class="report-panel">
+            <h3>Access control notes</h3>
+            <p>
+              All implementation artifacts (PDF, LaTeX source, and related documents) are distributed only as encrypted archives. Public pages provide guidance, but direct source access stays protected.
+            </p>
+            <p>
+              The secure gate below applies the same workflow used across this portal so policy enforcement remains consistent.
+            </p>
+            <div class="hero-actions">
+              <button class="btn btn-primary btn-block" type="button" data-open-gate>Open secure download gate</button>
+              <a class="btn btn-secondary btn-block" href="report.html">Open public HTML report</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
       <section class="report-section" id="ops">
         <h2>Operational checklist and documentation map</h2>
         <div class="report-columns">
@@ -239,5 +268,77 @@
       © 2026 MD ANISUR RAHMAN CHOWDHURY. All Rights Reserved.
     </div>
   </footer>
+
+  <div class="gate-overlay is-hidden" id="download-gate">
+    <div class="gate-modal" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+      <div class="gate-head">
+        <div>
+          <h3 id="gate-title">Secure download gate</h3>
+          <p>Complete the policy steps, then reveal the encrypted archives.</p>
+        </div>
+        <button class="gate-close" type="button" aria-label="Close download gate" onclick="closeGate()">&times;</button>
+      </div>
+
+      <div class="gate-steps">
+        <section class="download-step" data-gate-step="1">
+          <span class="step-badge">Step 1</span>
+          <h4>Public profile checks</h4>
+          <p>Visit the author's public links, then confirm both checkboxes.</p>
+          <div class="hero-actions">
+            <a class="btn btn-dark btn-block" href="https://github.com/ANIS151993" target="_blank" rel="noreferrer">Open GitHub profile</a>
+            <a class="btn btn-dark btn-block" href="https://youtu.be/O_pLEz7cyaY" target="_blank" rel="noreferrer">Open YouTube video</a>
+          </div>
+          <label class="gate-check"><input id="gate-github" type="checkbox"> I followed the GitHub profile.</label>
+          <label class="gate-check"><input id="gate-youtube" type="checkbox"> I subscribed to the YouTube channel.</label>
+          <div class="gate-actions">
+            <button class="btn btn-primary btn-block" id="gate-next-1" type="button" onclick="continueGate(2)">Continue</button>
+          </div>
+        </section>
+
+        <section class="download-step is-hidden" data-gate-step="2">
+          <span class="step-badge">Step 2</span>
+          <h4>Request the password by email</h4>
+          <p>Use the author's public email so access can be granted intentionally.</p>
+          <a class="btn btn-dark btn-block" href="mailto:engr.aanis@gmail.com?subject=Password%20request%20for%20SIF-CCA%20research%20download">Email the author</a>
+          <div class="email-template">Subject: Password request for SIF-CCA research download
+
+Hello Md Anisur Rahman Chowdhury,
+I followed the GitHub profile, subscribed to the YouTube channel, and would like the password for the encrypted SIF-CCA research package.
+Name:
+Institution:
+Purpose of use:</div>
+          <button class="copy-btn" type="button" onclick="copyEmailTemplate(this)">Copy email template</button>
+          <label class="gate-check"><input id="gate-request" type="checkbox"> I sent the password request email.</label>
+          <div class="gate-actions">
+            <button class="btn btn-secondary btn-block" type="button" onclick="goToGateStep(1)">Back</button>
+            <button class="btn btn-primary btn-block" id="gate-next-2" type="button" onclick="continueGate(3)">Continue</button>
+          </div>
+        </section>
+
+        <section class="download-step is-hidden" data-gate-step="3">
+          <span class="step-badge">Step 3</span>
+          <h4>Enter the password</h4>
+          <p>Enter the password once you receive it from the author.</p>
+          <input class="gate-input" id="gate-password" type="password" placeholder="Enter the archive password">
+          <p class="gate-error is-hidden" id="gate-error">The password is incorrect. Request the correct password from the author and try again.</p>
+          <div class="gate-actions">
+            <button class="btn btn-secondary btn-block" type="button" onclick="goToGateStep(2)">Back</button>
+            <button class="btn btn-primary btn-block" type="button" onclick="unlockDownloads()">Unlock downloads</button>
+          </div>
+        </section>
+
+        <section class="download-step is-hidden" data-gate-step="4">
+          <span class="step-badge">Unlocked</span>
+          <h4>Encrypted files ready</h4>
+          <p>These links expose only encrypted zip archives. The password is still required to extract the contents after download.</p>
+          <div class="download-links">
+            <a class="btn btn-primary btn-block" href="assets/papers/SIF-CCA-Research-Paper-Encrypted.zip">Download encrypted conference PDF</a>
+            <a class="btn btn-secondary btn-block" href="assets/papers/SIF-CCA-LaTeX-Source-Encrypted.zip">Download encrypted LaTeX source</a>
+            <a class="btn btn-dark btn-block" href="index.html">Return to portal</a>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
