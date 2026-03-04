@@ -39,6 +39,54 @@ const PRESETS = {
   },
 };
 
+const ARCH_DETAILS = {
+  ingestion: {
+    title: "Traffic ingestion and context capture",
+    text: "Stream network telemetry and function-level events into the SIF pipeline while preserving cloud-origin metadata for policy-aware analysis.",
+    bullets: [
+      "Collect flow features and invocation metadata.",
+      "Attach provider, identity, and tenancy context.",
+      "Forward normalized records into AI detection pipelines.",
+    ],
+  },
+  feature: {
+    title: "Feature engineering and fusion",
+    text: "Apply data cleaning, normalization, and temporal sequencing. Research-1 LSTM features remain compatible while Research-2 adds richer fusion signals.",
+    bullets: [
+      "Run preprocessing, deduplication, and anomaly correction.",
+      "Create sequence windows for temporal model ingestion.",
+      "Map each event into baseline and hybrid feature vectors.",
+    ],
+  },
+  detection: {
+    title: "Threat detection across two model generations",
+    text: "Run either baseline LSTM (Research-1) or the upgraded XGBoost + BiGRU fusion (Research-2), then reconcile confidence with class policy.",
+    bullets: [
+      "Compute class probabilities and attack confidence.",
+      "Compare confidence against risk thresholds.",
+      "Emit deterministic decision payload for orchestration.",
+    ],
+  },
+  orchestration: {
+    title: "Cross-cloud serverless orchestration",
+    text: "Invoke cloud-native handlers for AWS, Azure, and GCP using normalized events so mitigation logic remains consistent and auditable.",
+    bullets: [
+      "Dispatch BLOCK/CHALLENGE/ALLOW actions per provider.",
+      "Coordinate event buses and function triggers.",
+      "Persist execution telemetry with latency and cost metadata.",
+    ],
+  },
+  policy: {
+    title: "Unified zero-trust policy enforcement",
+    text: "Use a policy decision layer to validate identity and context for every request, ensuring consistent governance across providers.",
+    bullets: [
+      "Evaluate policy-as-code rules and identity claims.",
+      "Enforce least-privilege access at runtime.",
+      "Propagate policy updates with low delay and high consistency.",
+    ],
+  },
+};
+
 const EMAIL_TEMPLATE = [
   "Subject: Password request for SIF-CCA research download",
   "",
@@ -302,87 +350,425 @@ function runSimulation() {
   }
 }
 
+function setArchitectureNode(key) {
+  const item = ARCH_DETAILS[key];
+  if (!item) {
+    return;
+  }
+
+  document.querySelectorAll(".arch-node").forEach((button) => {
+    button.classList.toggle("is-active", button.dataset.archNode === key);
+  });
+
+  const title = byId("arch-detail-title");
+  const text = byId("arch-detail-text");
+  const list = byId("arch-detail-list");
+
+  if (title) {
+    title.textContent = item.title;
+  }
+  if (text) {
+    text.textContent = item.text;
+  }
+  if (list) {
+    list.innerHTML = "";
+    item.bullets.forEach((bullet) => {
+      const li = document.createElement("li");
+      li.textContent = bullet;
+      list.appendChild(li);
+    });
+  }
+}
+
+function initArchitectureExplorer() {
+  const nodes = document.querySelectorAll(".arch-node");
+  if (!nodes.length) {
+    return;
+  }
+
+  nodes.forEach((button) => {
+    button.addEventListener("click", () => {
+      setArchitectureNode(button.dataset.archNode);
+    });
+  });
+
+  setArchitectureNode("ingestion");
+}
+
+function createChart(id, config) {
+  if (!window.Chart) {
+    return;
+  }
+  const canvas = byId(id);
+  if (!canvas) {
+    return;
+  }
+  new Chart(canvas, config);
+}
+
+function buildLineTrendChart(id) {
+  createChart(id, {
+    type: "line",
+    data: {
+      labels: ["Epoch 1", "Epoch 10", "Epoch 20", "Epoch 30", "Epoch 40", "Epoch 50", "Epoch 60", "Epoch 80", "Epoch 100"],
+      datasets: [
+        {
+          label: "Training accuracy",
+          data: [82, 89, 92, 94.5, 95.5, 96.4, 97.1, 97.8, 98],
+          borderColor: "#17395c",
+          backgroundColor: "rgba(23,57,92,0.15)",
+          pointRadius: 3,
+          tension: 0.28,
+          fill: true,
+        },
+        {
+          label: "Validation accuracy",
+          data: [80, 87, 90.4, 93, 94.8, 95.7, 96.5, 97.2, 97.8],
+          borderColor: "#d97706",
+          backgroundColor: "rgba(217,119,6,0.14)",
+          pointRadius: 3,
+          tension: 0.28,
+          fill: true,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          min: 75,
+          max: 100,
+          ticks: {
+            callback(value) {
+              return `${value}%`;
+            },
+          },
+        },
+      },
+    },
+  });
+}
+
+function buildPieChart(id) {
+  createChart(id, {
+    type: "pie",
+    data: {
+      labels: ["BENIGN", "DDoS", "DoS", "PortScan", "Other"],
+      datasets: [
+        {
+          data: [38, 21, 19, 17, 5],
+          backgroundColor: ["#17395c", "#285f8f", "#4d8fc8", "#d97706", "#0f766e"],
+          borderColor: "#ffffff",
+          borderWidth: 2,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: "bottom",
+        },
+      },
+    },
+  });
+}
+
+function buildPolicyRadar(id) {
+  createChart(id, {
+    type: "radar",
+    data: {
+      labels: ["Identity fidelity", "Policy consistency", "Latency", "Scalability", "Cloud parity", "Response integrity"],
+      datasets: [
+        {
+          label: "Research-2 SIF-CCA",
+          data: [96, 99.6, 93, 95, 97, 96],
+          borderColor: "#0f766e",
+          backgroundColor: "rgba(15,118,110,0.16)",
+          pointBackgroundColor: "#0f766e",
+          pointRadius: 3,
+        },
+        {
+          label: "Research-1 baseline",
+          data: [90, 85, 88, 86, 70, 89],
+          borderColor: "#d97706",
+          backgroundColor: "rgba(217,119,6,0.12)",
+          pointBackgroundColor: "#d97706",
+          pointRadius: 3,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        r: {
+          min: 60,
+          max: 100,
+        },
+      },
+    },
+  });
+}
+
 function initCharts() {
   if (!window.Chart) {
     return;
   }
 
-  const perf = byId("performanceChart");
-  if (perf) {
-    new Chart(perf, {
-      type: "bar",
-      data: {
-        labels: ["RF", "XGBoost", "CNN", "LSTM", "SIF-CCA"],
-        datasets: [
-          {
-            label: "Accuracy (%)",
-            data: [94.85, 95.41, 95.56, 96.14, 98],
-            backgroundColor: ["#c3d3e4", "#a7c4df", "#8bb5d7", "#5f94bf", "#0f766e"],
-            borderRadius: 10,
-          },
-          {
-            label: "ROC-AUC",
-            data: [94.2, 95.9, 95.1, 96.6, 99],
-            backgroundColor: ["#f1ddbb", "#eec98f", "#eabf73", "#e4a146", "#d97706"],
-            borderRadius: 10,
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-          y: {
-            min: 90,
-            max: 100,
-            ticks: {
-              callback(value) {
-                return `${value}%`;
-              },
+  createChart("performanceChart", {
+    type: "bar",
+    data: {
+      labels: ["RF", "XGBoost", "CNN", "LSTM", "SIF-CCA"],
+      datasets: [
+        {
+          label: "Accuracy (%)",
+          data: [94.85, 95.41, 95.56, 96.14, 98],
+          backgroundColor: ["#c3d3e4", "#a7c4df", "#8bb5d7", "#5f94bf", "#0f766e"],
+          borderRadius: 10,
+        },
+        {
+          label: "ROC-AUC",
+          data: [94.2, 95.9, 95.1, 96.6, 99],
+          backgroundColor: ["#f1ddbb", "#eec98f", "#eabf73", "#e4a146", "#d97706"],
+          borderRadius: 10,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          min: 90,
+          max: 100,
+          ticks: {
+            callback(value) {
+              return `${value}%`;
             },
           },
         },
-        plugins: {
-          legend: {
-            position: "top",
-          },
+      },
+      plugins: {
+        legend: {
+          position: "top",
         },
       },
-    });
-  }
+    },
+  });
 
-  const cloud = byId("cloudChart");
-  if (cloud) {
-    new Chart(cloud, {
-      type: "bar",
-      data: {
-        labels: ["AWS Lambda", "Azure Functions", "Google Cloud", "Cross-cloud avg"],
-        datasets: [
-          {
-            label: "Avg latency (ms)",
-            data: [135, 142, 135, 135],
-            backgroundColor: ["#17395c", "#285f8f", "#4d8fc8", "#0f766e"],
-            borderRadius: 10,
-          },
-          {
-            label: "Cold start (ms)",
-            data: [221, 263, 249, 244],
-            backgroundColor: ["#d9c4a5", "#d5b17b", "#d18e52", "#d97706"],
-            borderRadius: 10,
-          },
-        ],
+  createChart("cloudChart", {
+    type: "bar",
+    data: {
+      labels: ["AWS Lambda", "Azure Functions", "Google Cloud", "Cross-cloud avg"],
+      datasets: [
+        {
+          label: "Avg latency (ms)",
+          data: [135, 142, 135, 135],
+          backgroundColor: ["#17395c", "#285f8f", "#4d8fc8", "#0f766e"],
+          borderRadius: 10,
+        },
+        {
+          label: "Cold start (ms)",
+          data: [221, 263, 249, 244],
+          backgroundColor: ["#d9c4a5", "#d5b17b", "#d18e52", "#d97706"],
+          borderRadius: 10,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: "top",
+        },
       },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            position: "top",
+    },
+  });
+
+  createChart("lineageChart", {
+    type: "bar",
+    data: {
+      labels: ["Detection quality", "Cloud scope", "Policy governance", "Operational metrics", "Response automation"],
+      datasets: [
+        {
+          label: "Research-1",
+          data: [8.5, 4.5, 5.5, 5, 6],
+          backgroundColor: "#a7c4df",
+          borderRadius: 8,
+        },
+        {
+          label: "Research-2",
+          data: [9.8, 9.4, 9.7, 9.2, 9.5],
+          backgroundColor: "#0f766e",
+          borderRadius: 8,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          min: 0,
+          max: 10,
+          title: {
+            display: true,
+            text: "Maturity score / 10",
           },
         },
       },
-    });
-  }
+      plugins: {
+        legend: {
+          position: "top",
+        },
+      },
+    },
+  });
+
+  createChart("lineageFeatureChart", {
+    type: "radar",
+    data: {
+      labels: ["Model depth", "Zero-trust readiness", "Cross-cloud coverage", "Runtime monitoring", "Automated response", "Cost observability"],
+      datasets: [
+        {
+          label: "Research-1",
+          data: [8.6, 7.2, 4.5, 6.5, 6.8, 5.7],
+          borderColor: "#d97706",
+          backgroundColor: "rgba(217,119,6,0.12)",
+          pointBackgroundColor: "#d97706",
+        },
+        {
+          label: "Research-2",
+          data: [9.4, 9.6, 9.4, 9.2, 9.1, 8.9],
+          borderColor: "#17395c",
+          backgroundColor: "rgba(23,57,92,0.14)",
+          pointBackgroundColor: "#17395c",
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        r: {
+          min: 0,
+          max: 10,
+        },
+      },
+      plugins: {
+        legend: {
+          position: "bottom",
+        },
+      },
+    },
+  });
+
+  buildLineTrendChart("accuracyTrendChart");
+  buildLineTrendChart("reportTrendChart");
+  buildPieChart("attackDistributionPieChart");
+  buildPieChart("reportAttackPieChart");
+  buildPolicyRadar("policyRadarChart");
+  buildPolicyRadar("reportPolicyRadarChart");
+
+  createChart("latencyCostScatterChart", {
+    type: "scatter",
+    data: {
+      datasets: [
+        {
+          label: "AWS Lambda",
+          data: [{ x: 135, y: 0.24 }],
+          pointRadius: 9,
+          backgroundColor: "#17395c",
+        },
+        {
+          label: "Azure Functions",
+          data: [{ x: 142, y: 0.27 }],
+          pointRadius: 9,
+          backgroundColor: "#285f8f",
+        },
+        {
+          label: "Google Cloud Functions",
+          data: [{ x: 135, y: 0.25 }],
+          pointRadius: 9,
+          backgroundColor: "#d97706",
+        },
+        {
+          label: "Cross-cloud fused runtime",
+          data: [{ x: 135, y: 0.25 }],
+          pointRadius: 10,
+          backgroundColor: "#0f766e",
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          title: {
+            display: true,
+            text: "Average latency (ms)",
+          },
+          min: 120,
+          max: 160,
+        },
+        y: {
+          title: {
+            display: true,
+            text: "Cost per 10K invocations (USD)",
+          },
+          min: 0.2,
+          max: 0.3,
+        },
+      },
+    },
+  });
+
+  createChart("realtimePhasesChart", {
+    type: "bar",
+    data: {
+      labels: ["Data prep", "Model integration", "Orchestration", "Policy hardening", "Pilot rollout", "Scale-out"],
+      datasets: [
+        {
+          label: "Engineering effort (days)",
+          data: [6, 10, 8, 7, 6, 9],
+          backgroundColor: "#17395c",
+          stack: "effort",
+          borderRadius: 8,
+        },
+        {
+          label: "Validation and security checks (days)",
+          data: [3, 4, 4, 5, 4, 4],
+          backgroundColor: "#d97706",
+          stack: "effort",
+          borderRadius: 8,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: { stacked: true },
+        y: {
+          stacked: true,
+          title: {
+            display: true,
+            text: "Estimated effort",
+          },
+        },
+      },
+      plugins: {
+        legend: {
+          position: "top",
+        },
+      },
+    },
+  });
 }
 
 function bindActions() {
@@ -410,5 +796,6 @@ document.addEventListener("DOMContentLoaded", () => {
   bindActions();
   syncGateButtons();
   runSimulation();
+  initArchitectureExplorer();
   initCharts();
 });
