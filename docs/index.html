@@ -19,13 +19,14 @@
       <button class="nav-toggle" type="button" aria-label="Toggle navigation" onclick="toggleNav()">&#9776;</button>
       <ul class="nav-links" id="nav-links">
         <li><a href="#overview">Overview</a></li>
+        <li><a href="#linkage">R1 to R2</a></li>
         <li><a href="#video">Video</a></li>
         <li><a href="#architecture">Architecture</a></li>
         <li><a href="#lab">Test Lab</a></li>
-        <li><a href="#results">Results</a></li>
+        <li><a href="#results">Graphs</a></li>
+        <li><a href="#implementation">Implementation</a></li>
         <li><a href="#paper">Paper</a></li>
         <li><a href="#resources">Resources</a></li>
-        <li><a href="#profiles">Profiles</a></li>
       </ul>
     </div>
   </nav>
@@ -41,7 +42,7 @@
           <h1 class="hero-title">Towards a Serverless Intelligent Firewall</h1>
           <p class="hero-subtitle">
             Integrating Cross-Cloud Adaptation, AI-Driven Security, and Zero-Trust Architectures.
-            This portal packages the second research artifact in the Serverless Intelligent Firewall series with a public preview, an interactive simulation, and encrypted research downloads.
+            This portal now includes expanded analytics dashboards, a research-to-research bridge, and a practical implementation blueprint combining both research versions.
           </p>
 
           <div class="author-block">
@@ -58,17 +59,17 @@
 
           <div class="hero-actions">
             <a class="btn btn-primary" href="#lab">Try the Test Lab</a>
-            <a class="btn btn-secondary" href="#video">Watch the Overview</a>
+            <a class="btn btn-secondary" href="#results">Open Graph Dashboard</a>
             <a class="btn btn-secondary" href="report.html">Read the HTML Report</a>
+            <a class="btn btn-secondary" href="implementation.html">Implementation Guide</a>
             <button class="btn btn-ghost" type="button" data-open-gate>Secure Downloads</button>
-            <a class="btn btn-ghost" href="https://github.com/ANIS151993/Serverless-Intelligent-Firewall-Research-1" target="_blank" rel="noreferrer">Research-1 Reference</a>
           </div>
         </div>
 
         <aside class="hero-sidecard">
           <h2>Submission Context</h2>
           <p>
-            The SmartCloud 2026 conference page lists the event as IEEE-affiliated and scheduled for June 22-25, 2026 in New York. This artifact is presented here as a conference submission package, not as an accepted publication.
+            The SmartCloud 2026 conference page lists the event as IEEE-affiliated and scheduled for June 22-25, 2026 in New York. This artifact is presented as a conference submission package, not yet an accepted publication.
           </p>
           <div class="metric-grid">
             <div class="metric-card">
@@ -99,26 +100,26 @@
         <p class="section-kicker">Research Delta</p>
         <h2 class="section-title">What changed in Research-2</h2>
         <p class="section-subtitle">
-          This version extends the original serverless intelligent firewall into a multi-cloud and policy-orchestrated security system. The core contribution is SIF-CCA: a serverless security model that combines hybrid AI detection with a unified cross-cloud zero-trust control plane.
+          Research-2 extends the original serverless intelligent firewall into a multi-cloud and policy-orchestrated security system. The core contribution is SIF-CCA: a serverless security model that combines hybrid AI detection with a unified cross-cloud zero-trust control plane.
         </p>
 
         <div class="overview-grid">
           <article class="card">
             <h3>From single-cloud to cross-cloud</h3>
             <p>
-              Research-1 focused on LSTM-based intrusion detection in a serverless environment. Research-2 adds explicit AWS, Azure, and Google Cloud coordination with a cloud-agnostic policy layer and event routing.
+              Research-1 emphasized LSTM-based intrusion detection in serverless contexts. Research-2 adds explicit AWS, Azure, and Google Cloud coordination with cloud-agnostic policy and event-routing layers.
             </p>
           </article>
           <article class="card">
             <h3>Hybrid detection engine</h3>
             <p>
-              The proposed model fuses XGBoost feature learning with BiGRU temporal modeling. That hybrid layer improves separability over RF, standalone XGBoost, CNN, and LSTM baselines.
+              The proposed model fuses XGBoost feature learning with BiGRU temporal modeling. The hybrid layer improves separability over RF, standalone XGBoost, CNN, and LSTM baselines.
             </p>
           </article>
           <article class="card">
-            <h3>Protected artifact release</h3>
+            <h3>Deployment realism</h3>
             <p>
-              Only the first-page paper preview is public. The conference PDF and LaTeX sources are shipped as encrypted downloads so the full manuscript is not directly exposed in the public repository.
+              Beyond model quality, this version emphasizes latency, cold-start behavior, policy propagation speed, and consistency across clouds, making the research easier to map into production constraints.
             </p>
           </article>
         </div>
@@ -129,23 +130,82 @@
             <ul class="list-tight">
               <li>Unified zero-trust control plane for consistent policy propagation across cloud providers.</li>
               <li>Cross-cloud serverless orchestration with low-latency event-driven threat response.</li>
-              <li>Hybrid XGBoost plus BiGRU detection that reaches 98% performance across core metrics.</li>
+              <li>Hybrid XGBoost plus BiGRU detection with 98% performance across key metrics.</li>
               <li>Cost-aware serverless execution with approximate per-10K invocation cost near $0.25.</li>
             </ul>
           </div>
           <div class="quote-box">
-            <strong>Practical intent:</strong> this artifact is designed as a research portal first, but it also provides a browser-based test harness so reviewers, students, or collaborators can interact with the decision logic without needing a backend service.
+            <strong>Practical intent:</strong> this artifact is designed as a research portal first, but now includes graph-rich analytics and implementation guidance so teams can directly map results into real-world rollouts.
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section section-alt" id="video">
+    <section class="section section-alt" id="linkage">
+      <div class="container">
+        <p class="section-kicker">Research Continuity</p>
+        <h2 class="section-title">Strong linkage: Research-1 to Research-2</h2>
+        <p class="section-subtitle">
+          Research-2 is not an isolated system. It is the direct evolution of Research-1, expanding detection quality into real multi-cloud orchestration and unified zero-trust governance.
+        </p>
+
+        <div class="linkage-grid">
+          <article class="chart-card">
+            <h3>Capability evolution chart</h3>
+            <div class="chart-wrap">
+              <canvas id="lineageChart" aria-label="Research lineage chart"></canvas>
+            </div>
+          </article>
+          <article class="card">
+            <h3>Research bridge highlights</h3>
+            <table class="stats-table comparison-table">
+              <thead>
+                <tr>
+                  <th>Dimension</th>
+                  <th>Research-1</th>
+                  <th>Research-2</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Core model</td><td>LSTM IDS</td><td><strong>XGBoost + BiGRU</strong></td></tr>
+                <tr><td>Cloud scope</td><td>Single-cloud oriented</td><td><strong>AWS + Azure + GCP</strong></td></tr>
+                <tr><td>Policy control</td><td>Zero-trust concept</td><td><strong>Unified control plane</strong></td></tr>
+                <tr><td>Avg response latency</td><td>N/A</td><td><strong>135 ms</strong></td></tr>
+                <tr><td>Policy consistency</td><td>N/A</td><td><strong>99.6%</strong></td></tr>
+              </tbody>
+            </table>
+          </article>
+        </div>
+
+        <div class="chart-grid">
+          <article class="chart-card">
+            <h3>Feature maturity radar</h3>
+            <div class="chart-wrap tight">
+              <canvas id="lineageFeatureChart" aria-label="Feature maturity radar chart"></canvas>
+            </div>
+          </article>
+          <article class="research-bridge">
+            <h3>Direct links to Research-1</h3>
+            <p>
+              Use these links to move between both artifacts. The combined documentation and implementation blueprint are structured to keep conceptual and technical continuity.
+            </p>
+            <div class="bridge-links">
+              <a class="btn btn-secondary" href="https://anis151993.github.io/Serverless-Intelligent-Firewall-Research-1/" target="_blank" rel="noreferrer">Research-1 Website</a>
+              <a class="btn btn-secondary" href="https://github.com/ANIS151993/Serverless-Intelligent-Firewall-Research-1" target="_blank" rel="noreferrer">Research-1 Repository</a>
+              <a class="btn btn-secondary" href="report.html">Research-2 Report</a>
+              <a class="btn btn-secondary" href="implementation.html">Combined Guide</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="video">
       <div class="container">
         <p class="section-kicker">Overview Video</p>
         <h2 class="section-title">Walkthrough and demonstration</h2>
         <p class="section-subtitle">
-          The embedded overview video is the public-facing entry point for the research. It gives visitors a fast way to understand the architecture, results, and motivation before requesting access to the protected manuscript.
+          The embedded overview video gives visitors a fast way to understand the architecture, results, and motivation before requesting access to the protected manuscript.
         </p>
         <div class="video-frame">
           <iframe
@@ -157,7 +217,7 @@
       </div>
     </section>
 
-    <section class="section" id="architecture">
+    <section class="section section-alt" id="architecture">
       <div class="container">
         <p class="section-kicker">Architecture</p>
         <h2 class="section-title">Cross-cloud adaptive security flow</h2>
@@ -201,6 +261,42 @@
           </div>
         </div>
 
+        <div class="arch-explorer">
+          <div class="arch-node-grid">
+            <button class="arch-node is-active" type="button" data-arch-node="ingestion">
+              <strong>Phase 1</strong>
+              <span>Traffic ingestion</span>
+            </button>
+            <button class="arch-node" type="button" data-arch-node="feature">
+              <strong>Phase 2</strong>
+              <span>Feature fusion</span>
+            </button>
+            <button class="arch-node" type="button" data-arch-node="detection">
+              <strong>Phase 3</strong>
+              <span>Threat detection</span>
+            </button>
+            <button class="arch-node" type="button" data-arch-node="orchestration">
+              <strong>Phase 4</strong>
+              <span>Cloud response</span>
+            </button>
+            <button class="arch-node" type="button" data-arch-node="policy">
+              <strong>Phase 5</strong>
+              <span>Zero-trust policy</span>
+            </button>
+          </div>
+          <article class="arch-detail-card">
+            <h3 id="arch-detail-title">Traffic ingestion and context capture</h3>
+            <p id="arch-detail-text">
+              Stream network telemetry and function-level events into the SIF pipeline while preserving cloud-origin metadata for policy-aware downstream analysis.
+            </p>
+            <ul class="arch-detail-list" id="arch-detail-list">
+              <li>Collect flow features and invocation metadata.</li>
+              <li>Attach cloud provider and identity context.</li>
+              <li>Forward normalized records into detection modules.</li>
+            </ul>
+          </article>
+        </div>
+
         <div class="figure-grid">
           <article class="figure-card">
             <h3>Control plane view</h3>
@@ -210,7 +306,7 @@
           <article class="figure-card">
             <h3>Confusion matrix</h3>
             <img src="assets/images/confusion-matrix.png" alt="Confusion matrix">
-            <p class="caption">Benign, DDoS, DoS, Other, and PortScan classes show a strong diagonal with limited misclassification.</p>
+            <p class="caption">BENIGN, DDoS, DoS, Other, and PortScan classes show a strong diagonal with limited misclassification.</p>
           </article>
           <article class="figure-card">
             <h3>ROC comparison</h3>
@@ -221,7 +317,7 @@
       </div>
     </section>
 
-    <section class="section section-alt" id="lab">
+    <section class="section" id="lab">
       <div class="container">
         <p class="section-kicker">Interactive Test</p>
         <h2 class="section-title">SIF-CCA Test Lab</h2>
@@ -321,25 +417,61 @@
       </div>
     </section>
 
-    <section class="section" id="results">
+    <section class="section section-alt" id="results">
       <div class="container">
-        <p class="section-kicker">Evaluation</p>
-        <h2 class="section-title">Quantitative results</h2>
+        <p class="section-kicker">Evaluation and Analytics</p>
+        <h2 class="section-title">Graph-rich performance dashboard</h2>
         <p class="section-subtitle">
-          The paper reports strong classification performance together with practical deployment metrics: cross-cloud latency, cold-start behavior, and policy consistency under a unified zero-trust model.
+          This dashboard now includes multiple chart modes: bar chart, line graph, pie chart, radar chart, and scatter graph to make the results more realistic and interactive for reviewers.
         </p>
 
         <div class="chart-grid">
           <article class="chart-card">
-            <h3>Model comparison</h3>
+            <h3>Model comparison bar chart</h3>
             <div class="chart-wrap">
-              <canvas id="performanceChart" aria-label="Model comparison chart"></canvas>
+              <canvas id="performanceChart" aria-label="Model comparison bar chart"></canvas>
             </div>
           </article>
           <article class="chart-card">
-            <h3>Cloud performance</h3>
+            <h3>Cloud performance bar chart</h3>
             <div class="chart-wrap">
-              <canvas id="cloudChart" aria-label="Cloud performance chart"></canvas>
+              <canvas id="cloudChart" aria-label="Cloud performance bar chart"></canvas>
+            </div>
+          </article>
+        </div>
+
+        <div class="chart-grid chart-grid-3">
+          <article class="chart-card">
+            <h3>Accuracy trend line graph</h3>
+            <div class="chart-wrap tight">
+              <canvas id="accuracyTrendChart" aria-label="Accuracy trend line graph"></canvas>
+            </div>
+          </article>
+          <article class="chart-card">
+            <h3>Attack mix pie chart</h3>
+            <div class="chart-wrap tight">
+              <canvas id="attackDistributionPieChart" aria-label="Attack distribution pie chart"></canvas>
+            </div>
+          </article>
+          <article class="chart-card">
+            <h3>Policy health radar chart</h3>
+            <div class="chart-wrap tight">
+              <canvas id="policyRadarChart" aria-label="Policy health radar chart"></canvas>
+            </div>
+          </article>
+        </div>
+
+        <div class="chart-grid">
+          <article class="chart-card">
+            <h3>Latency vs cost scatter graph</h3>
+            <div class="chart-wrap">
+              <canvas id="latencyCostScatterChart" aria-label="Latency versus cost scatter graph"></canvas>
+            </div>
+          </article>
+          <article class="chart-card">
+            <h3>Real-time rollout phase chart</h3>
+            <div class="chart-wrap">
+              <canvas id="realtimePhasesChart" aria-label="Real-time rollout phase chart"></canvas>
             </div>
           </article>
         </div>
@@ -410,6 +542,57 @@
       </div>
     </section>
 
+    <section class="section" id="implementation">
+      <div class="container">
+        <p class="section-kicker">Real-time Deployment Blueprint</p>
+        <h2 class="section-title">How to implement the Serverless Intelligent Firewall in production</h2>
+        <p class="section-subtitle">
+          The guide below combines Research-1 and Research-2 into an actionable implementation path. It starts from the proven IDS baseline and evolves into cross-cloud adaptive enforcement.
+        </p>
+
+        <div class="implementation-roadmap">
+          <article class="roadmap-step">
+            <strong>Stage 1</strong>
+            <h3>Baseline IDS layer (Research-1)</h3>
+            <p>Train and validate LSTM detection, establish feature pipeline quality, and expose model scoring through an event-driven serverless endpoint.</p>
+          </article>
+          <article class="roadmap-step">
+            <strong>Stage 2</strong>
+            <h3>Hybrid detection upgrade (Research-2)</h3>
+            <p>Add XGBoost plus BiGRU fusion for stronger static and temporal attack coverage, and calibrate thresholds for lower operational false positives.</p>
+          </article>
+          <article class="roadmap-step">
+            <strong>Stage 3</strong>
+            <h3>Cross-cloud orchestration</h3>
+            <p>Deploy handlers on AWS Lambda, Azure Functions, and GCP Functions with normalized event schema, queue routing, and unified telemetry.</p>
+          </article>
+          <article class="roadmap-step">
+            <strong>Stage 4</strong>
+            <h3>Unified zero-trust control plane</h3>
+            <p>Implement policy-as-code and identity abstraction to keep enforcement consistent across all providers during runtime and failover conditions.</p>
+          </article>
+        </div>
+
+        <div class="guide-callout">
+          <h3>Graphical implementation guidance</h3>
+          <p>
+            For detailed architecture diagrams, step-by-step cloud mapping, rollout checklist, and combined documentation from both research phases, open the dedicated guide page.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="implementation.html">Open full implementation guide</a>
+            <a class="btn btn-secondary" href="https://anis151993.github.io/Serverless-Intelligent-Firewall-Research-1/" target="_blank" rel="noreferrer">Open Research-1 portal</a>
+          </div>
+          <pre class="code-block"><code># Simplified real-time orchestration sequence
+ingest_event() -> score_with_hybrid_model()
+if threat_detected:
+    trigger_cloud_response(provider)
+    evaluate_zero_trust_policy()
+    enforce_allow_or_block()
+log_decision_to_unified_telemetry()</code></pre>
+        </div>
+      </div>
+    </section>
+
     <section class="section section-alt" id="paper">
       <div class="container">
         <p class="section-kicker">Protected Manuscript</p>
@@ -476,7 +659,7 @@
         <p class="section-kicker">Research Assets</p>
         <h2 class="section-title">Portal resources</h2>
         <p class="section-subtitle">
-          The project mirrors the structure of the previous research portal, but adapts it for the new submission state and encrypted artifact policy.
+          This version now contains stronger inter-links between both research artifacts, expanded graphs, and practical implementation documentation.
         </p>
 
         <div class="resource-grid">
@@ -487,9 +670,21 @@
             </div>
             <h3>Interactive HTML report</h3>
             <p>
-              A public, web-native report that expands the paper into a readable artifact for reviewers, students, and general visitors without exposing the protected manuscript file.
+              A web-native report that expands the manuscript into readable sections for reviewers, students, and practitioners while keeping the protected files encrypted.
             </p>
             <a class="btn btn-dark" href="report.html">Open report</a>
+          </article>
+
+          <article class="resource-card">
+            <div class="resource-meta">
+              <span class="pill">Public page</span>
+              <span class="pill accent">Implementation</span>
+            </div>
+            <h3>Combined implementation guide</h3>
+            <p>
+              Graphical and practical guidance to implement the Serverless Intelligent Firewall in real-time by combining lessons from Research-1 and Research-2.
+            </p>
+            <a class="btn btn-dark" href="implementation.html">Open guide</a>
           </article>
 
           <article class="resource-card">
@@ -499,9 +694,21 @@
             </div>
             <h3>Overview poster page</h3>
             <p>
-              A poster-style summary view designed for fast scanning, demos, and conference-style presentations. It uses the same asset set and secure download workflow.
+              A poster-style summary for quick review and conference-style presentations using the same assets and secure download workflow.
             </p>
             <a class="btn btn-dark" href="poster.html">Open poster</a>
+          </article>
+
+          <article class="resource-card">
+            <div class="resource-meta">
+              <span class="pill">Cross-link</span>
+              <span class="pill accent">Research-1</span>
+            </div>
+            <h3>First research artifact</h3>
+            <p>
+              The original research baseline and portal. This site now links directly to it so readers can compare progression clearly.
+            </p>
+            <a class="btn btn-dark" href="https://anis151993.github.io/Serverless-Intelligent-Firewall-Research-1/" target="_blank" rel="noreferrer">Open Research-1 website</a>
           </article>
 
           <article class="resource-card">
@@ -511,9 +718,21 @@
             </div>
             <h3>Protected document bundles</h3>
             <p>
-              The conference PDF and LaTeX source package are published only as encrypted zip archives. The gate enforces the same policy flow used in the previous portal.
+              The conference PDF and LaTeX source package are published only as encrypted zip archives. The gate enforces the same policy flow as the first portal.
             </p>
             <button class="btn btn-primary" type="button" data-open-gate>Unlock downloads</button>
+          </article>
+
+          <article class="resource-card">
+            <div class="resource-meta">
+              <span class="pill">Profiles</span>
+              <span class="pill accent">Contact</span>
+            </div>
+            <h3>Author profiles and contact</h3>
+            <p>
+              All primary profiles and contact channels for collaboration, citation, and password requests are collected in one place.
+            </p>
+            <a class="btn btn-dark" href="#profiles">Open profiles</a>
           </article>
         </div>
       </div>
@@ -524,13 +743,13 @@
         <p class="section-kicker">Author Profiles</p>
         <h2 class="section-title">Primary researcher links</h2>
         <p class="section-subtitle">
-          All public profiles are linked directly so visitors can verify authorship, follow ongoing work, and request access through the expected channels.
+          All public profiles are linked directly so visitors can verify authorship, follow ongoing work, and request access through expected channels.
         </p>
 
         <div class="profile-grid">
           <article class="resource-card">
             <h3>LinkedIn</h3>
-            <p>Professional profile and academic / engineering background.</p>
+            <p>Professional profile and academic/engineering background.</p>
             <a href="https://linkedin.com/in/md-anisur-rahman-chowdhury-15862420a" target="_blank" rel="noreferrer">linkedin.com/in/md-anisur-rahman-chowdhury-15862420a</a>
           </article>
           <article class="resource-card">
@@ -567,7 +786,7 @@
     <div class="footer-inner">
       <div>
         SIF-CCA Research Portal for the SmartCloud 2026 submission.
-        GitHub Pages target: <a href="https://anis151993.github.io/Serverless-Intelligent-Firewall-Research-2/" target="_blank" rel="noreferrer">anis151993.github.io/Serverless-Intelligent-Firewall-Research-2</a>
+        GitHub Pages URL: <a href="https://anis151993.github.io/Serverless-Intelligent-Firewall-Research-2/" target="_blank" rel="noreferrer">anis151993.github.io/Serverless-Intelligent-Firewall-Research-2</a>
       </div>
       <div>Lead contact: <a href="mailto:engr.aanis@gmail.com">engr.aanis@gmail.com</a></div>
     </div>
@@ -646,4 +865,3 @@ Purpose of use:</div>
   </div>
 </body>
 </html>
-
