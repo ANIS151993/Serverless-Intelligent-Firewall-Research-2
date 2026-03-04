@@ -1,4 +1,5 @@
 const PASS_HASH = "5b484d8b2799daf74779ce686501847d4a08b5e917c1e8395e1da7f7e73bce0d";
+const IMPLEMENTATION_ACCESS_KEY = "sif-implementation-access";
 
 const PRESETS = {
   benign: {
@@ -172,6 +173,146 @@ function closeGate() {
   }
 }
 
+function hasImplementationAccess() {
+  try {
+    return sessionStorage.getItem(IMPLEMENTATION_ACCESS_KEY) === "granted";
+  } catch {
+    return false;
+  }
+}
+
+function grantImplementationAccess() {
+  try {
+    sessionStorage.setItem(IMPLEMENTATION_ACCESS_KEY, "granted");
+  } catch {
+    // Ignore storage restrictions and continue with current session unlock.
+  }
+}
+
+function showImplementationGate() {
+  const overlay = byId("implementation-gate");
+  if (!overlay) {
+    return;
+  }
+  overlay.classList.remove("is-hidden");
+  document.body.classList.add("gate-locked");
+  goToImplementationStep(1);
+}
+
+function hideImplementationGate() {
+  const overlay = byId("implementation-gate");
+  if (!overlay) {
+    return;
+  }
+  overlay.classList.add("is-hidden");
+  document.body.classList.remove("gate-locked");
+}
+
+function goToImplementationStep(step) {
+  document.querySelectorAll("[data-impl-step]").forEach((node) => {
+    node.classList.add("is-hidden");
+  });
+  const active = document.querySelector(`[data-impl-step="${step}"]`);
+  if (active) {
+    active.classList.remove("is-hidden");
+  }
+  const error = byId("impl-error");
+  if (error) {
+    error.classList.add("is-hidden");
+  }
+}
+
+function implementationStepOneReady() {
+  const git = byId("impl-github");
+  const yt = byId("impl-youtube");
+  return Boolean(git && git.checked && yt && yt.checked);
+}
+
+function implementationStepTwoReady() {
+  const req = byId("impl-request");
+  return Boolean(req && req.checked);
+}
+
+function continueImplementationGate(step) {
+  if (step === 2 && !implementationStepOneReady()) {
+    return;
+  }
+  if (step === 3 && !implementationStepTwoReady()) {
+    return;
+  }
+  goToImplementationStep(step);
+}
+
+function syncImplementationGateButtons() {
+  const step1 = byId("impl-next-1");
+  const step2 = byId("impl-next-2");
+  if (step1) {
+    step1.disabled = !implementationStepOneReady();
+  }
+  if (step2) {
+    step2.disabled = !implementationStepTwoReady();
+  }
+}
+
+async function unlockImplementationGuide() {
+  const input = byId("impl-password");
+  const error = byId("impl-error");
+  if (!input) {
+    return;
+  }
+  if (!implementationStepOneReady()) {
+    goToImplementationStep(1);
+    return;
+  }
+  if (!implementationStepTwoReady()) {
+    goToImplementationStep(2);
+    return;
+  }
+  const hash = await sha256(input.value.trim());
+  if (hash === PASS_HASH) {
+    grantImplementationAccess();
+    input.value = "";
+    hideImplementationGate();
+    return;
+  }
+  if (error) {
+    error.classList.remove("is-hidden");
+  }
+  input.value = "";
+}
+
+function initImplementationGate() {
+  const overlay = byId("implementation-gate");
+  if (!overlay) {
+    return;
+  }
+
+  if (hasImplementationAccess()) {
+    hideImplementationGate();
+    return;
+  }
+
+  showImplementationGate();
+  syncImplementationGateButtons();
+
+  ["impl-github", "impl-youtube", "impl-request"].forEach((id) => {
+    const input = byId(id);
+    if (input) {
+      input.addEventListener("change", syncImplementationGateButtons);
+    }
+  });
+
+  const input = byId("impl-password");
+  if (input) {
+    input.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        unlockImplementationGuide();
+      }
+    });
+  }
+}
+
 function goToGateStep(step) {
   document.querySelectorAll("[data-gate-step]").forEach((node) => {
     node.classList.add("is-hidden");
@@ -237,7 +378,12 @@ function syncGateButtons() {
 }
 
 function copyEmailTemplate(button) {
-  navigator.clipboard.writeText(EMAIL_TEMPLATE).then(() => {
+  const scopedTemplate = button?.previousElementSibling?.classList?.contains("email-template")
+    ? button.previousElementSibling.textContent
+    : "";
+  const templateToCopy = (scopedTemplate || EMAIL_TEMPLATE).trimEnd();
+
+  navigator.clipboard.writeText(templateToCopy).then(() => {
     if (!button) {
       return;
     }
@@ -942,6 +1088,7 @@ function bindActions() {
 
 document.addEventListener("DOMContentLoaded", () => {
   bindActions();
+  initImplementationGate();
   initReveal();
   initVideoInteractive();
   syncGateButtons();

@@ -259,6 +259,66 @@
     </div>
   </main>
 
+  <div class="gate-overlay" id="implementation-gate">
+    <div class="gate-modal" role="dialog" aria-modal="true" aria-labelledby="impl-title">
+      <div class="gate-head">
+        <div>
+          <h3 id="impl-title">Protected implementation guide access</h3>
+          <p>Complete the security policy steps and enter the password to open the full implementation guide.</p>
+        </div>
+      </div>
+
+      <div class="gate-steps">
+        <section class="download-step" data-impl-step="1">
+          <span class="step-badge">Step 1</span>
+          <h4>Public profile checks</h4>
+          <p>Visit these public channels and confirm both checks.</p>
+          <div class="hero-actions">
+            <a class="btn btn-dark btn-block" href="https://github.com/ANIS151993" target="_blank" rel="noreferrer">Open GitHub profile</a>
+            <a class="btn btn-dark btn-block" href="https://youtu.be/O_pLEz7cyaY" target="_blank" rel="noreferrer">Open YouTube video</a>
+          </div>
+          <label class="gate-check"><input id="impl-github" type="checkbox"> I followed the GitHub profile.</label>
+          <label class="gate-check"><input id="impl-youtube" type="checkbox"> I subscribed to the YouTube channel.</label>
+          <div class="gate-actions">
+            <button class="btn btn-primary btn-block" id="impl-next-1" type="button" onclick="continueImplementationGate(2)">Continue</button>
+          </div>
+        </section>
+
+        <section class="download-step is-hidden" data-impl-step="2">
+          <span class="step-badge">Step 2</span>
+          <h4>Request the password by email</h4>
+          <p>Send the request before unlocking implementation access.</p>
+          <a class="btn btn-dark btn-block" href="mailto:engr.aanis@gmail.com?subject=Password%20request%20for%20SIF-CCA%20implementation%20guide">Email the author</a>
+          <div class="email-template">Subject: Password request for SIF-CCA implementation guide
+
+Hello Md Anisur Rahman Chowdhury,
+I followed the GitHub profile, subscribed to the YouTube channel, and request access to the protected implementation guide.
+Name:
+Institution:
+Purpose of use:</div>
+          <button class="copy-btn" type="button" onclick="copyEmailTemplate(this)">Copy email template</button>
+          <label class="gate-check"><input id="impl-request" type="checkbox"> I sent the password request email.</label>
+          <div class="gate-actions">
+            <button class="btn btn-secondary btn-block" type="button" onclick="goToImplementationStep(1)">Back</button>
+            <button class="btn btn-primary btn-block" id="impl-next-2" type="button" onclick="continueImplementationGate(3)">Continue</button>
+          </div>
+        </section>
+
+        <section class="download-step is-hidden" data-impl-step="3">
+          <span class="step-badge">Step 3</span>
+          <h4>Enter the password</h4>
+          <p>Enter the guide access password: <strong>MARC@151995$</strong>.</p>
+          <input class="gate-input" id="impl-password" type="password" placeholder="Enter the implementation guide password">
+          <p class="gate-error is-hidden" id="impl-error">Password is incorrect. Complete the policy flow and use the correct password.</p>
+          <div class="gate-actions">
+            <button class="btn btn-secondary btn-block" type="button" onclick="goToImplementationStep(2)">Back</button>
+            <button class="btn btn-primary btn-block" type="button" onclick="unlockImplementationGuide()">Open full implementation guide</button>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
   <footer class="footer">
     <div class="footer-inner">
       <div>Combined implementation guide for Research-1 and Research-2.</div>
