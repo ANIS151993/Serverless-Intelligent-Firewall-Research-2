@@ -276,14 +276,63 @@
         <p class="section-kicker">Overview Video</p>
         <h2 class="section-title">Walkthrough and demonstration</h2>
         <p class="section-subtitle">
-          The embedded overview video gives visitors a fast way to understand the architecture, results, and motivation before requesting access to the protected manuscript.
+          The overview video is now presented as a compact technical briefing module. Use chapter jumps to move directly through motivation, architecture, hybrid AI model flow, and real-time cross-cloud enforcement.
         </p>
-        <div class="video-frame">
-          <iframe
-            src="https://www.youtube.com/embed/O_pLEz7cyaY"
-            title="SIF-CCA overview video"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen></iframe>
+
+        <div class="video-interactive-grid">
+          <article class="video-info-card">
+            <h3>Technical coverage in this video</h3>
+            <p>
+              The session explains why a static firewall is insufficient for serverless workloads and demonstrates how SIF-CCA combines AI-driven detection with cloud-agnostic zero-trust orchestration.
+            </p>
+            <ul class="list-tight">
+              <li>Problem framing: identity sprawl, ephemeral workloads, fragmented policy.</li>
+              <li>Architecture explanation: ingestion, detection, orchestration, policy loops.</li>
+              <li>Model reasoning: Research-1 baseline versus Research-2 hybrid upgrades.</li>
+              <li>Operational view: latency, consistency, and deployment realism.</li>
+            </ul>
+            <div class="video-meta-row">
+              <span class="video-meta-pill">Research communication</span>
+              <span class="video-meta-pill">Technical walkthrough</span>
+              <span class="video-meta-pill">Implementation aligned</span>
+            </div>
+          </article>
+
+          <div>
+            <div class="video-frame video-frame-compact">
+              <iframe
+                id="overview-video-player"
+                src="https://www.youtube.com/embed/O_pLEz7cyaY?rel=0"
+                title="SIF-CCA overview video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
+            </div>
+            <p class="caption">Use the chapter controls below to jump directly to the most relevant technical segment.</p>
+          </div>
+        </div>
+
+        <div class="video-chapter-shell">
+          <div class="video-chapter-buttons">
+            <button class="video-chapter-btn is-active" type="button" data-video-start="0" data-video-node="1" data-video-title="Intro and motivation" data-video-note="Explains the core security gap in serverless and why Research-2 extends Research-1 into cross-cloud zero-trust enforcement.">00:00 Intro</button>
+            <button class="video-chapter-btn" type="button" data-video-start="45" data-video-node="2" data-video-title="Architecture breakdown" data-video-note="Walks through detection, orchestration, and unified control plane interactions in the SIF-CCA architecture.">00:45 Architecture</button>
+            <button class="video-chapter-btn" type="button" data-video-start="95" data-video-node="3" data-video-title="Model strategy and evaluation" data-video-note="Discusses model choices, hybrid detection logic, and key metrics including 98% accuracy and 0.990 ROC-AUC.">01:35 Model + Results</button>
+            <button class="video-chapter-btn" type="button" data-video-start="150" data-video-node="4" data-video-title="Cross-cloud orchestration" data-video-note="Covers runtime behavior across AWS, Azure, and GCP including latency, scalability, and event routing patterns.">02:30 Multi-cloud</button>
+            <button class="video-chapter-btn" type="button" data-video-start="205" data-video-node="5" data-video-title="Practical implementation guidance" data-video-note="Summarizes real-world rollout direction and links directly to the implementation blueprint in this website.">03:25 Implementation</button>
+          </div>
+
+          <article class="video-chapter-detail">
+            <h3 id="video-chapter-title">Intro and motivation</h3>
+            <p id="video-chapter-note">
+              Explains the core security gap in serverless and why Research-2 extends Research-1 into cross-cloud zero-trust enforcement.
+            </p>
+            <div class="video-flow-rail">
+              <span class="video-flow-node is-active" data-video-node="1">Problem</span>
+              <span class="video-flow-node" data-video-node="2">Architecture</span>
+              <span class="video-flow-node" data-video-node="3">Model</span>
+              <span class="video-flow-node" data-video-node="4">Cloud Runtime</span>
+              <span class="video-flow-node" data-video-node="5">Implementation</span>
+            </div>
+          </article>
         </div>
       </div>
     </section>
