@@ -438,6 +438,14 @@ textarea {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.linkage-grid,
+.implementation-grid {
+  margin-top: 28px;
+  display: grid;
+  gap: 22px;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+}
+
 .card,
 .resource-card,
 .figure-card,
@@ -473,6 +481,31 @@ textarea {
   gap: 18px;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   margin-top: 24px;
+}
+
+.research-bridge {
+  margin-top: 28px;
+  padding: 24px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, #132e47 0%, #20486a 100%);
+  color: #fff;
+}
+
+.research-bridge h3 {
+  margin: 0 0 10px;
+  font-size: 1.32rem;
+}
+
+.research-bridge p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.bridge-links {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .quote-box {
@@ -543,6 +576,82 @@ textarea {
   margin: 0;
   color: var(--ink-soft);
   font-size: 0.92rem;
+}
+
+.arch-explorer {
+  margin-top: 24px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(216, 207, 191, 0.84);
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+  padding: 18px;
+}
+
+.arch-node-grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.arch-node {
+  border: 1px solid rgba(23, 57, 92, 0.2);
+  border-radius: 12px;
+  background: #f7f2e8;
+  color: var(--brand);
+  padding: 12px 10px;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+}
+
+.arch-node strong {
+  display: block;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.arch-node span {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.arch-node:hover,
+.arch-node.is-active {
+  background: #fff;
+  border-color: rgba(40, 95, 143, 0.58);
+  transform: translateY(-1px);
+}
+
+.arch-detail-card {
+  margin-top: 14px;
+  padding: 16px;
+  border-radius: 12px;
+  background: #fbfaf7;
+  border: 1px solid rgba(216, 207, 191, 0.84);
+}
+
+.arch-detail-card h3 {
+  margin: 0 0 8px;
+  color: var(--brand);
+  font-size: 1.08rem;
+}
+
+.arch-detail-card p {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+.arch-detail-list {
+  margin: 12px 0 0;
+  padding-left: 1.2rem;
+  color: var(--ink-soft);
+}
+
+.arch-detail-list li {
+  margin-bottom: 0.42rem;
 }
 
 .lab-shell {
@@ -730,6 +839,10 @@ textarea {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.chart-grid.chart-grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .chart-card {
   padding: 20px;
   border-radius: var(--radius-md);
@@ -746,6 +859,88 @@ textarea {
 .chart-wrap {
   position: relative;
   height: 340px;
+}
+
+.chart-wrap.tight {
+  height: 280px;
+}
+
+.comparison-table td strong {
+  color: var(--brand);
+}
+
+.implementation-roadmap {
+  margin-top: 26px;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.roadmap-step {
+  padding: 16px;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid rgba(216, 207, 191, 0.84);
+  box-shadow: var(--shadow-sm);
+}
+
+.roadmap-step strong {
+  display: inline-flex;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(23, 57, 92, 0.08);
+  color: var(--brand);
+}
+
+.roadmap-step h3 {
+  margin: 10px 0 8px;
+  color: var(--brand);
+  font-size: 1.02rem;
+}
+
+.roadmap-step p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+}
+
+.guide-callout {
+  margin-top: 24px;
+  padding: 20px;
+  border-radius: var(--radius-md);
+  background: #fff8eb;
+  border: 1px solid rgba(217, 119, 6, 0.18);
+  color: #6f4d1d;
+}
+
+.guide-callout h3 {
+  margin: 0 0 8px;
+  font-size: 1.14rem;
+  color: #8f4f07;
+}
+
+.guide-callout p {
+  margin: 0;
+}
+
+.code-block {
+  margin-top: 12px;
+  border-radius: 12px;
+  background: #0f2436;
+  color: #e9f2f9;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 14px;
+  overflow: auto;
+  font-family: "Fira Code", "SFMono-Regular", Consolas, monospace;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.code-block code {
+  white-space: pre;
 }
 
 .stats-table {
@@ -1237,11 +1432,16 @@ textarea {
   .profile-grid,
   .poster-grid,
   .architecture-grid,
+  .linkage-grid,
+  .implementation-grid,
   .paper-preview-shell,
   .report-grid,
   .chart-grid,
+  .chart-grid.chart-grid-3,
   .figure-grid,
   .report-columns,
+  .implementation-roadmap,
+  .arch-node-grid,
   .split-callout,
   .lab-grid {
     grid-template-columns: 1fr;
@@ -1317,4 +1517,3 @@ textarea {
     padding: 20px;
   }
 }
-
