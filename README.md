@@ -20,8 +20,6 @@ The artifact is structured as a static GitHub Pages portal that mirrors the firs
 - `docs/styles.css`, `docs/script.js`: shared UI and interaction logic
 - `docs/assets/images/`: publishable result figures
 - `docs/assets/papers/`: encrypted download archives for the PDF and LaTeX sources
-- `.github/workflows/deploy-pages.yml`: GitHub Pages deployment workflow
-
 ## Protected documents
 
 The raw manuscript files remain in the local workspace for editing, but they are ignored by Git so they are not published in plaintext.
@@ -40,8 +38,9 @@ Public distribution happens through encrypted zip archives inside `docs/assets/p
 Push the repository to GitHub, then:
 
 1. Ensure the default branch is `main` or `master`.
-2. In GitHub repository settings, allow Pages deployments from GitHub Actions.
-3. Push a new commit; the included workflow will publish the `docs/` directory.
+2. In GitHub repository settings, set GitHub Pages to deploy from the branch source.
+3. Select branch `main` and folder `/docs`.
+4. Save the Pages settings; GitHub will publish the static site from the `docs/` directory.
 
 ## Notes
 
