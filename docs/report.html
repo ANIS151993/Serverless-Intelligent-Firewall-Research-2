@@ -22,6 +22,7 @@
         <li><a href="#summary">Summary</a></li>
         <li><a href="#method">Method</a></li>
         <li><a href="#results">Results</a></li>
+        <li><a href="implementation.html">Implementation</a></li>
         <li><a href="#download">Downloads</a></li>
       </ul>
     </div>
@@ -42,7 +43,10 @@
           <span class="report-chip">135 ms cross-cloud latency</span>
           <span class="report-chip">99.6% policy consistency</span>
         </div>
-        <button class="btn btn-primary" type="button" data-open-gate>Secure downloads</button>
+        <div class="hero-actions">
+          <button class="btn btn-primary" type="button" data-open-gate>Secure downloads</button>
+          <a class="btn btn-secondary" href="implementation.html">Combined guide</a>
+        </div>
       </div>
     </div>
 
@@ -145,6 +149,27 @@
           </article>
         </div>
 
+        <div class="chart-grid chart-grid-3">
+          <article class="chart-card">
+            <h3>Accuracy trend line graph</h3>
+            <div class="chart-wrap tight">
+              <canvas id="reportTrendChart"></canvas>
+            </div>
+          </article>
+          <article class="chart-card">
+            <h3>Attack mix pie chart</h3>
+            <div class="chart-wrap tight">
+              <canvas id="reportAttackPieChart"></canvas>
+            </div>
+          </article>
+          <article class="chart-card">
+            <h3>Policy health radar chart</h3>
+            <div class="chart-wrap tight">
+              <canvas id="reportPolicyRadarChart"></canvas>
+            </div>
+          </article>
+        </div>
+
         <div class="report-columns">
           <article class="report-panel">
             <h3>Performance summary</h3>
@@ -223,7 +248,10 @@
               <li>Email the author to request the password.</li>
               <li>Use the secure gate to reveal the encrypted archive links.</li>
             </ol>
-            <button class="btn btn-primary btn-block" type="button" data-open-gate>Open secure gate</button>
+            <div class="hero-actions">
+              <button class="btn btn-primary btn-block" type="button" data-open-gate>Open secure gate</button>
+              <a class="btn btn-secondary btn-block" href="implementation.html">Open implementation guide</a>
+            </div>
           </article>
         </div>
       </section>
@@ -310,4 +338,3 @@ Purpose of use:</div>
   </div>
 </body>
 </html>
-
