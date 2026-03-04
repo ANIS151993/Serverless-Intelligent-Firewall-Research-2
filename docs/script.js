@@ -87,6 +87,36 @@ const ARCH_DETAILS = {
   },
 };
 
+const ARCH_MODE_DETAILS = {
+  logical: {
+    title: "Logical architecture view",
+    text: "The system is organized into independent logical layers so data ingestion, detection quality, and policy governance can evolve without tightly coupled rewrites.",
+    bullets: [
+      "Layered separation keeps architecture maintainable.",
+      "Detection model upgrades do not break policy engine logic.",
+      "Unified policy remains central while execution stays distributed.",
+    ],
+  },
+  dataflow: {
+    title: "Data-flow architecture view",
+    text: "Events move through a closed-loop path: telemetry capture, feature preparation, hybrid model scoring, policy evaluation, and response actuation with audit feedback.",
+    bullets: [
+      "Context-rich records are normalized before inference.",
+      "Model outputs are converted into deterministic action payloads.",
+      "Each decision writes back to telemetry for continual tuning.",
+    ],
+  },
+  deployment: {
+    title: "Deployment architecture view",
+    text: "Runtime execution is cloud-distributed while policy intelligence stays unified. This enables provider resilience with consistent identity and access controls.",
+    bullets: [
+      "AWS, Azure, and GCP handlers share a common event contract.",
+      "Control plane enforces zero-trust parity across clouds.",
+      "Failover keeps policy behavior stable during provider shifts.",
+    ],
+  },
+};
+
 const EMAIL_TEMPLATE = [
   "Subject: Password request for SIF-CCA research download",
   "",
@@ -393,6 +423,51 @@ function initArchitectureExplorer() {
   });
 
   setArchitectureNode("ingestion");
+}
+
+function setArchitectureMode(modeKey) {
+  const item = ARCH_MODE_DETAILS[modeKey];
+  if (!item) {
+    return;
+  }
+
+  document.querySelectorAll(".architecture-mode-btn").forEach((button) => {
+    button.classList.toggle("is-active", button.dataset.archMode === modeKey);
+  });
+
+  const title = byId("arch-mode-title");
+  const text = byId("arch-mode-text");
+  const list = byId("arch-mode-list");
+
+  if (title) {
+    title.textContent = item.title;
+  }
+  if (text) {
+    text.textContent = item.text;
+  }
+  if (list) {
+    list.innerHTML = "";
+    item.bullets.forEach((bullet) => {
+      const li = document.createElement("li");
+      li.textContent = bullet;
+      list.appendChild(li);
+    });
+  }
+}
+
+function initArchitectureModes() {
+  const buttons = document.querySelectorAll(".architecture-mode-btn");
+  if (!buttons.length) {
+    return;
+  }
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      setArchitectureMode(button.dataset.archMode);
+    });
+  });
+
+  setArchitectureMode("logical");
 }
 
 function initVideoInteractive() {
@@ -872,5 +947,6 @@ document.addEventListener("DOMContentLoaded", () => {
   syncGateButtons();
   runSimulation();
   initArchitectureExplorer();
+  initArchitectureModes();
   initCharts();
 });
