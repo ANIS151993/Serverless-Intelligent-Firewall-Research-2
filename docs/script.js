@@ -395,6 +395,41 @@ function initArchitectureExplorer() {
   setArchitectureNode("ingestion");
 }
 
+function initReveal() {
+  const targets = document.querySelectorAll(
+    ".hero-sidecard, .metric-card, .card, .resource-card, .figure-card, .chart-card, .mini-card, .work-card, .research-bridge, .guide-callout, .roadmap-step, .architecture-figure, .paper-sheet, .policy-card"
+  );
+
+  if (!targets.length) {
+    return;
+  }
+
+  if (!("IntersectionObserver" in window)) {
+    targets.forEach((el) => {
+      el.classList.add("revealed");
+    });
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("revealed");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.14, rootMargin: "0px 0px -20px 0px" }
+  );
+
+  targets.forEach((el, idx) => {
+    el.classList.add("is-reveal");
+    el.style.transitionDelay = `${Math.min(idx * 15, 180)}ms`;
+    observer.observe(el);
+  });
+}
+
 function createChart(id, config) {
   if (!window.Chart) {
     return;
@@ -794,6 +829,7 @@ function bindActions() {
 
 document.addEventListener("DOMContentLoaded", () => {
   bindActions();
+  initReveal();
   syncGateButtons();
   runSimulation();
   initArchitectureExplorer();
