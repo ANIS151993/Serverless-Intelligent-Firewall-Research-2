@@ -1,0 +1,14 @@
+*:Zone.Identifier
+__pycache__/
+.DS_Store
+
+# Keep the raw manuscript private in local workspace; publish encrypted bundles instead.
+IEEE-conference-template-062824.tex
+bibliography.bib
+Towards_a_Serverless_Intelligent_Firewall__Integrating_Cross_Cloud_Adaptation__AI_Driven_Security__and_Zero_Trust_Architectures.pdf
+Picture1.png
+Picture2.png
+Picture3.png
+ROC_High_Quality.png
+confusion_matrix_hd.png
+system architecture.png
