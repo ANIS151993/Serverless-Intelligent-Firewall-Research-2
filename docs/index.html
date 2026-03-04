@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIF-CCA Research Portal | SmartCloud 2026 Submission</title>
+  <meta name="description" content="Research portal for SIF-CCA: Towards a Serverless Intelligent Firewall integrating cross-cloud adaptation, AI-driven security, and zero-trust architectures.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a class="nav-brand" href="#top">SIF Research-2</a>
+      <button class="nav-toggle" type="button" aria-label="Toggle navigation" onclick="toggleNav()">&#9776;</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#video">Video</a></li>
+        <li><a href="#architecture">Architecture</a></li>
+        <li><a href="#lab">Test Lab</a></li>
+        <li><a href="#results">Results</a></li>
+        <li><a href="#paper">Paper</a></li>
+        <li><a href="#resources">Resources</a></li>
+        <li><a href="#profiles">Profiles</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="hero-inner">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow-row">
+            <span class="eyebrow accent">IEEE SmartCloud 2026 submission</span>
+            <span class="eyebrow">Under review as of March 4, 2026</span>
+          </div>
+          <h1 class="hero-title">Towards a Serverless Intelligent Firewall</h1>
+          <p class="hero-subtitle">
+            Integrating Cross-Cloud Adaptation, AI-Driven Security, and Zero-Trust Architectures.
+            This portal packages the second research artifact in the Serverless Intelligent Firewall series with a public preview, an interactive simulation, and encrypted research downloads.
+          </p>
+
+          <div class="author-block">
+            <p class="author-line">Md Anisur Rahman Chowdhury and Kefei Wang</p>
+            <p class="affiliation-line">Department of Computer and Information Science, Gannon University, USA</p>
+            <div class="profile-row">
+              <a class="profile-pill" href="https://linkedin.com/in/md-anisur-rahman-chowdhury-15862420a" target="_blank" rel="noreferrer">LinkedIn</a>
+              <a class="profile-pill" href="https://github.com/ANIS151993" target="_blank" rel="noreferrer">GitHub</a>
+              <a class="profile-pill" href="https://scholar.google.com/citations?user=NQyywPoAAAAJ" target="_blank" rel="noreferrer">Google Scholar</a>
+              <a class="profile-pill" href="https://marcbd.com" target="_blank" rel="noreferrer">Portfolio</a>
+              <a class="profile-pill" href="https://researchgate.net/profile/Md-Anisur-Rahman-Chowdhury" target="_blank" rel="noreferrer">ResearchGate</a>
+            </div>
+          </div>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#lab">Try the Test Lab</a>
+            <a class="btn btn-secondary" href="#video">Watch the Overview</a>
+            <a class="btn btn-secondary" href="report.html">Read the HTML Report</a>
+            <button class="btn btn-ghost" type="button" data-open-gate>Secure Downloads</button>
+            <a class="btn btn-ghost" href="https://github.com/ANIS151993/Serverless-Intelligent-Firewall-Research-1" target="_blank" rel="noreferrer">Research-1 Reference</a>
+          </div>
+        </div>
+
+        <aside class="hero-sidecard">
+          <h2>Submission Context</h2>
+          <p>
+            The SmartCloud 2026 conference page lists the event as IEEE-affiliated and scheduled for June 22-25, 2026 in New York. This artifact is presented here as a conference submission package, not as an accepted publication.
+          </p>
+          <div class="metric-grid">
+            <div class="metric-card">
+              <strong>98%</strong>
+              <span>Accuracy / Precision / Recall / F1</span>
+            </div>
+            <div class="metric-card">
+              <strong>0.990</strong>
+              <span>ROC-AUC</span>
+            </div>
+            <div class="metric-card">
+              <strong>135 ms</strong>
+              <span>Cross-cloud avg. response latency</span>
+            </div>
+            <div class="metric-card">
+              <strong>99.6%</strong>
+              <span>Policy consistency</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section" id="overview">
+      <div class="container">
+        <p class="section-kicker">Research Delta</p>
+        <h2 class="section-title">What changed in Research-2</h2>
+        <p class="section-subtitle">
+          This version extends the original serverless intelligent firewall into a multi-cloud and policy-orchestrated security system. The core contribution is SIF-CCA: a serverless security model that combines hybrid AI detection with a unified cross-cloud zero-trust control plane.
+        </p>
+
+        <div class="overview-grid">
+          <article class="card">
+            <h3>From single-cloud to cross-cloud</h3>
+            <p>
+              Research-1 focused on LSTM-based intrusion detection in a serverless environment. Research-2 adds explicit AWS, Azure, and Google Cloud coordination with a cloud-agnostic policy layer and event routing.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Hybrid detection engine</h3>
+            <p>
+              The proposed model fuses XGBoost feature learning with BiGRU temporal modeling. That hybrid layer improves separability over RF, standalone XGBoost, CNN, and LSTM baselines.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Protected artifact release</h3>
+            <p>
+              Only the first-page paper preview is public. The conference PDF and LaTeX sources are shipped as encrypted downloads so the full manuscript is not directly exposed in the public repository.
+            </p>
+          </article>
+        </div>
+
+        <div class="split-callout">
+          <div class="card">
+            <h3>Primary contributions</h3>
+            <ul class="list-tight">
+              <li>Unified zero-trust control plane for consistent policy propagation across cloud providers.</li>
+              <li>Cross-cloud serverless orchestration with low-latency event-driven threat response.</li>
+              <li>Hybrid XGBoost plus BiGRU detection that reaches 98% performance across core metrics.</li>
+              <li>Cost-aware serverless execution with approximate per-10K invocation cost near $0.25.</li>
+            </ul>
+          </div>
+          <div class="quote-box">
+            <strong>Practical intent:</strong> this artifact is designed as a research portal first, but it also provides a browser-based test harness so reviewers, students, or collaborators can interact with the decision logic without needing a backend service.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="video">
+      <div class="container">
+        <p class="section-kicker">Overview Video</p>
+        <h2 class="section-title">Walkthrough and demonstration</h2>
+        <p class="section-subtitle">
+          The embedded overview video is the public-facing entry point for the research. It gives visitors a fast way to understand the architecture, results, and motivation before requesting access to the protected manuscript.
+        </p>
+        <div class="video-frame">
+          <iframe
+            src="https://www.youtube.com/embed/O_pLEz7cyaY"
+            title="SIF-CCA overview video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="architecture">
+      <div class="container">
+        <p class="section-kicker">Architecture</p>
+        <h2 class="section-title">Cross-cloud adaptive security flow</h2>
+        <p class="section-subtitle">
+          The architecture separates detection, orchestration, and policy governance so each cloud can respond locally while remaining under a single zero-trust policy model.
+        </p>
+
+        <div class="architecture-grid">
+          <div class="architecture-figure">
+            <img src="assets/images/system-architecture.png" alt="SIF-CCA system architecture diagram">
+            <p class="caption">
+              Proposed SIF-CCA architecture from the manuscript. The system combines an AI-driven detection and response engine, serverless orchestration, and a unified control plane spanning AWS, Azure, and GCP.
+            </p>
+          </div>
+
+          <div class="mini-grid">
+            <article class="mini-card">
+              <h4>1. AI-driven detection and response</h4>
+              <p>
+                XGBoost learns high-value feature interactions while BiGRU captures temporal attack behavior. Their fusion layer improves precision without losing recall on noisy cloud traffic.
+              </p>
+            </article>
+            <article class="mini-card">
+              <h4>2. Serverless orchestration layer</h4>
+              <p>
+                Event-driven functions execute detection, classification, and mitigation across cloud providers. The design targets low operational overhead and scale-to-zero efficiency.
+              </p>
+            </article>
+            <article class="mini-card">
+              <h4>3. Unified zero-trust control plane</h4>
+              <p>
+                Policy-as-code, identity abstraction, and service-to-service validation keep enforcement consistent even when workloads shift across providers.
+              </p>
+            </article>
+            <article class="mini-card">
+              <h4>4. Cloud-agnostic deployment path</h4>
+              <p>
+                SIF-CCA avoids provider lock-in by routing policy, telemetry, and response events through normalized cross-cloud interfaces rather than vendor-specific point logic.
+              </p>
+            </article>
+          </div>
+        </div>
+
+        <div class="figure-grid">
+          <article class="figure-card">
+            <h3>Control plane view</h3>
+            <img src="assets/images/control-plane-diagram.png" alt="Unified control plane diagram">
+            <p class="caption">A simplified view of the unified control plane linking the firewall core to AWS, Azure, and GCP.</p>
+          </article>
+          <article class="figure-card">
+            <h3>Confusion matrix</h3>
+            <img src="assets/images/confusion-matrix.png" alt="Confusion matrix">
+            <p class="caption">Benign, DDoS, DoS, Other, and PortScan classes show a strong diagonal with limited misclassification.</p>
+          </article>
+          <article class="figure-card">
+            <h3>ROC comparison</h3>
+            <img src="assets/images/roc-curve.png" alt="ROC curve comparison">
+            <p class="caption">The proposed SIF-CCA model reaches the strongest ROC curve among the evaluated baselines.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="lab">
+      <div class="container">
+        <p class="section-kicker">Interactive Test</p>
+        <h2 class="section-title">SIF-CCA Test Lab</h2>
+        <p class="section-subtitle">
+          This browser-based simulator lets visitors test the research output without a backend deployment. It is an explainable approximation of the published decision logic, not the exact training artifact.
+        </p>
+
+        <div class="lab-shell">
+          <div class="lab-grid">
+            <section class="lab-panel">
+              <h3>Simulate a cross-cloud event</h3>
+              <p>Enter representative traffic and policy signals, or load one of the preset scenarios.</p>
+
+              <div class="preset-row">
+                <button class="preset-btn" type="button" data-preset="benign">Benign flow</button>
+                <button class="preset-btn" type="button" data-preset="portscan">Recon / port scan</button>
+                <button class="preset-btn" type="button" data-preset="credential">Credential abuse</button>
+                <button class="preset-btn" type="button" data-preset="ddos">DDoS burst</button>
+              </div>
+
+              <div class="form-grid">
+                <div class="field">
+                  <label for="failedAuth">Failed authentications</label>
+                  <input id="failedAuth" type="number" min="0" max="50" value="1">
+                </div>
+                <div class="field">
+                  <label for="requestBurst">Requests / second</label>
+                  <input id="requestBurst" type="number" min="0" max="2000" value="48">
+                </div>
+                <div class="field">
+                  <label for="geoSpread">Active regions</label>
+                  <input id="geoSpread" type="number" min="1" max="10" value="1">
+                </div>
+                <div class="field">
+                  <label for="anomalyScore">Anomaly score</label>
+                  <input id="anomalyScore" type="number" min="0" max="100" value="14">
+                </div>
+                <div class="field">
+                  <label for="lateralHops">Lateral movement hops</label>
+                  <input id="lateralHops" type="number" min="0" max="20" value="1">
+                </div>
+                <div class="field">
+                  <label for="policyDrift">Policy drift score</label>
+                  <input id="policyDrift" type="number" min="0" max="100" value="8">
+                </div>
+                <div class="field">
+                  <label for="provider">Initial cloud provider</label>
+                  <select id="provider">
+                    <option value="aws">AWS Lambda</option>
+                    <option value="azure">Azure Functions</option>
+                    <option value="gcp">Google Cloud Functions</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label>Execution note</label>
+                  <small>This test is deterministic and runs locally in the browser.</small>
+                </div>
+              </div>
+
+              <div class="hero-actions">
+                <button class="btn btn-primary btn-block" type="button" onclick="runSimulation()">Run SIF-CCA Simulation</button>
+              </div>
+            </section>
+
+            <section class="lab-output">
+              <span class="status-chip" id="statusChip">Simulated SIF-CCA assessment</span>
+              <div class="lab-score">
+                <div class="score-hero">
+                  <strong id="scoreValue">16</strong>
+                  <span>risk score / 100</span>
+                </div>
+                <div class="risk-bar" aria-label="Risk score">
+                  <div class="risk-bar-fill" id="riskFill"></div>
+                </div>
+                <div class="output-grid">
+                  <div class="output-box">
+                    <strong>Predicted class</strong>
+                    <span id="resultLabel">Benign / low risk</span>
+                  </div>
+                  <div class="output-box">
+                    <strong>Enforcement decision</strong>
+                    <span id="resultDecision">Allow</span>
+                  </div>
+                  <div class="output-box">
+                    <strong>Recommended action</strong>
+                    <p id="resultAction">Allow traffic and keep continuous verification active.</p>
+                  </div>
+                  <div class="output-box">
+                    <strong>Cross-cloud route</strong>
+                    <p id="resultProvider">AWS Lambda receives the event first, then forwards policy state to Azure and GCP.</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="results">
+      <div class="container">
+        <p class="section-kicker">Evaluation</p>
+        <h2 class="section-title">Quantitative results</h2>
+        <p class="section-subtitle">
+          The paper reports strong classification performance together with practical deployment metrics: cross-cloud latency, cold-start behavior, and policy consistency under a unified zero-trust model.
+        </p>
+
+        <div class="chart-grid">
+          <article class="chart-card">
+            <h3>Model comparison</h3>
+            <div class="chart-wrap">
+              <canvas id="performanceChart" aria-label="Model comparison chart"></canvas>
+            </div>
+          </article>
+          <article class="chart-card">
+            <h3>Cloud performance</h3>
+            <div class="chart-wrap">
+              <canvas id="cloudChart" aria-label="Cloud performance chart"></canvas>
+            </div>
+          </article>
+        </div>
+
+        <div class="results-grid">
+          <article class="card">
+            <h3>Classification metrics</h3>
+            <table class="stats-table">
+              <thead>
+                <tr>
+                  <th>Model</th>
+                  <th>Accuracy</th>
+                  <th>Precision</th>
+                  <th>Recall</th>
+                  <th>F1</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>RF</td><td>94.85%</td><td>94.47%</td><td>94.98%</td><td>94.22%</td></tr>
+                <tr><td>XGBoost</td><td>95.41%</td><td>95.02%</td><td>95.81%</td><td>95.91%</td></tr>
+                <tr><td>CNN</td><td>95.56%</td><td>95.25%</td><td>95.93%</td><td>95.09%</td></tr>
+                <tr><td>LSTM</td><td>96.14%</td><td>96.92%</td><td>96.65%</td><td>96.78%</td></tr>
+                <tr class="highlight"><td>SIF-CCA</td><td>98.00%</td><td>98.00%</td><td>98.00%</td><td>98.00%</td></tr>
+              </tbody>
+            </table>
+          </article>
+
+          <article class="card">
+            <h3>Serverless latency and cost</h3>
+            <table class="stats-table">
+              <thead>
+                <tr>
+                  <th>Platform</th>
+                  <th>Avg. latency</th>
+                  <th>Cold start</th>
+                  <th>Cost / 10K</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>AWS Lambda</td><td>135 ms</td><td>221 ms</td><td>$0.24</td></tr>
+                <tr><td>Azure Functions</td><td>142 ms</td><td>263 ms</td><td>$0.27</td></tr>
+                <tr><td>Google Cloud Functions</td><td>135 ms</td><td>249 ms</td><td>$0.25</td></tr>
+                <tr class="highlight"><td>Cross-cloud avg.</td><td>135 ms</td><td>244 ms</td><td>$0.25</td></tr>
+              </tbody>
+            </table>
+          </article>
+
+          <article class="card">
+            <h3>Zero-trust enforcement snapshot</h3>
+            <table class="stats-table">
+              <thead>
+                <tr>
+                  <th>Scope</th>
+                  <th>Policy delay</th>
+                  <th>Identity latency</th>
+                  <th>Consistency</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>AWS</td><td>88 ms</td><td>110 ms</td><td>99.6%</td></tr>
+                <tr><td>Azure</td><td>92 ms</td><td>116 ms</td><td>99.4%</td></tr>
+                <tr><td>GCP</td><td>85 ms</td><td>108 ms</td><td>99.7%</td></tr>
+                <tr class="highlight"><td>Cross-cloud avg.</td><td>88.3 ms</td><td>111.3 ms</td><td>99.6%</td></tr>
+              </tbody>
+            </table>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="paper">
+      <div class="container">
+        <p class="section-kicker">Protected Manuscript</p>
+        <h2 class="section-title">Public first-page preview only</h2>
+        <p class="section-subtitle">
+          The site intentionally exposes only the paper cover and abstract summary. The full conference PDF and source package are provided through encrypted downloads after the policy gate.
+        </p>
+
+        <div class="paper-preview-shell">
+          <article class="paper-sheet">
+            <div class="paper-topline">
+              <span>IEEE SmartCloud 2026 submission</span>
+              <span>SIF-CCA</span>
+            </div>
+            <h3 class="paper-title">Towards a Serverless Intelligent Firewall: Integrating Cross-Cloud Adaptation, AI-Driven Security, and Zero-Trust Architectures</h3>
+            <p class="paper-authors"><strong>Md Anisur Rahman Chowdhury</strong> and <strong>Kefei Wang</strong></p>
+            <p class="paper-affiliation">Department of Computer and Information Science, Gannon University, USA</p>
+
+            <div class="paper-columns">
+              <div>
+                <h4>Abstract</h4>
+                <p>
+                  SIF-CCA addresses identity sprawl, fragmented cloud management, and cloud-native attack paths by combining a unified zero-trust control plane, multi-cloud serverless orchestration, and hybrid AI-driven detection.
+                </p>
+                <p>
+                  The model reports 98% accuracy and a 0.990 ROC-AUC on a thoroughly preprocessed CIC-IDS2017 pipeline, outperforming standalone XGBoost, CNN, RF, and LSTM baselines.
+                </p>
+              </div>
+              <div>
+                <h4>Highlights</h4>
+                <p>
+                  Cross-cloud experiments across AWS, Azure, and Google Cloud show low-latency intrusion detection near 135 ms, linear scalability under heavy workloads, and 99.6% policy consistency under unified enforcement.
+                </p>
+                <p>
+                  The full manuscript, PDF package, and LaTeX sources are password-protected and distributed as encrypted archives.
+                </p>
+              </div>
+            </div>
+
+            <div class="paper-lock">
+              Preview access is intentionally limited to this first-page summary. Use the secure download gate to request the encrypted paper bundle.
+            </div>
+          </article>
+
+          <aside class="policy-card">
+            <h3>Download policy</h3>
+            <ol class="policy-list">
+              <li>Follow the author on GitHub.</li>
+              <li>Subscribe to the YouTube channel and review the overview video.</li>
+              <li>Send a password request email to the author.</li>
+              <li>Use the password to unlock the download gate and extract the encrypted archives.</li>
+            </ol>
+            <div class="hero-actions">
+              <button class="btn btn-primary btn-block" type="button" data-open-gate>Open secure download gate</button>
+              <a class="btn btn-secondary btn-block" href="report.html">Open public HTML report</a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="resources">
+      <div class="container">
+        <p class="section-kicker">Research Assets</p>
+        <h2 class="section-title">Portal resources</h2>
+        <p class="section-subtitle">
+          The project mirrors the structure of the previous research portal, but adapts it for the new submission state and encrypted artifact policy.
+        </p>
+
+        <div class="resource-grid">
+          <article class="resource-card">
+            <div class="resource-meta">
+              <span class="pill">Public page</span>
+              <span class="pill accent">Long-form</span>
+            </div>
+            <h3>Interactive HTML report</h3>
+            <p>
+              A public, web-native report that expands the paper into a readable artifact for reviewers, students, and general visitors without exposing the protected manuscript file.
+            </p>
+            <a class="btn btn-dark" href="report.html">Open report</a>
+          </article>
+
+          <article class="resource-card">
+            <div class="resource-meta">
+              <span class="pill">Public page</span>
+              <span class="pill accent">Poster board</span>
+            </div>
+            <h3>Overview poster page</h3>
+            <p>
+              A poster-style summary view designed for fast scanning, demos, and conference-style presentations. It uses the same asset set and secure download workflow.
+            </p>
+            <a class="btn btn-dark" href="poster.html">Open poster</a>
+          </article>
+
+          <article class="resource-card">
+            <div class="resource-meta">
+              <span class="pill">Encrypted</span>
+              <span class="pill accent">Password required</span>
+            </div>
+            <h3>Protected document bundles</h3>
+            <p>
+              The conference PDF and LaTeX source package are published only as encrypted zip archives. The gate enforces the same policy flow used in the previous portal.
+            </p>
+            <button class="btn btn-primary" type="button" data-open-gate>Unlock downloads</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="profiles">
+      <div class="container">
+        <p class="section-kicker">Author Profiles</p>
+        <h2 class="section-title">Primary researcher links</h2>
+        <p class="section-subtitle">
+          All public profiles are linked directly so visitors can verify authorship, follow ongoing work, and request access through the expected channels.
+        </p>
+
+        <div class="profile-grid">
+          <article class="resource-card">
+            <h3>LinkedIn</h3>
+            <p>Professional profile and academic / engineering background.</p>
+            <a href="https://linkedin.com/in/md-anisur-rahman-chowdhury-15862420a" target="_blank" rel="noreferrer">linkedin.com/in/md-anisur-rahman-chowdhury-15862420a</a>
+          </article>
+          <article class="resource-card">
+            <h3>GitHub</h3>
+            <p>Source repositories, prior artifacts, and the first research portal.</p>
+            <a href="https://github.com/ANIS151993" target="_blank" rel="noreferrer">github.com/ANIS151993</a>
+          </article>
+          <article class="resource-card">
+            <h3>Google Scholar</h3>
+            <p>Citation and publication index for academic visibility.</p>
+            <a href="https://scholar.google.com/citations?user=NQyywPoAAAAJ" target="_blank" rel="noreferrer">scholar.google.com/citations?user=NQyywPoAAAAJ</a>
+          </article>
+          <article class="resource-card">
+            <h3>Portfolio</h3>
+            <p>Personal portfolio and extended project showcase.</p>
+            <a href="https://marcbd.com" target="_blank" rel="noreferrer">marcbd.com</a>
+          </article>
+          <article class="resource-card">
+            <h3>ResearchGate</h3>
+            <p>Research network profile for academic collaboration.</p>
+            <a href="https://researchgate.net/profile/Md-Anisur-Rahman-Chowdhury" target="_blank" rel="noreferrer">researchgate.net/profile/Md-Anisur-Rahman-Chowdhury</a>
+          </article>
+          <article class="resource-card">
+            <h3>Contact</h3>
+            <p>Password requests and academic inquiries should be sent directly by email.</p>
+            <a href="mailto:engr.aanis@gmail.com">engr.aanis@gmail.com</a>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        SIF-CCA Research Portal for the SmartCloud 2026 submission.
+        GitHub Pages target: <a href="https://anis151993.github.io/Serverless-Intelligent-Firewall-Research-2/" target="_blank" rel="noreferrer">anis151993.github.io/Serverless-Intelligent-Firewall-Research-2</a>
+      </div>
+      <div>Lead contact: <a href="mailto:engr.aanis@gmail.com">engr.aanis@gmail.com</a></div>
+    </div>
+  </footer>
+
+  <div class="gate-overlay is-hidden" id="download-gate">
+    <div class="gate-modal" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+      <div class="gate-head">
+        <div>
+          <h3 id="gate-title">Secure download gate</h3>
+          <p>Complete the public policy steps, then unlock the encrypted archives.</p>
+        </div>
+        <button class="gate-close" type="button" aria-label="Close download gate" onclick="closeGate()">&times;</button>
+      </div>
+
+      <div class="gate-steps">
+        <section class="download-step" data-gate-step="1">
+          <span class="step-badge">Step 1</span>
+          <h4>Follow the public channels</h4>
+          <p>Open the official profile and video links first, then confirm the two checks below.</p>
+          <div class="hero-actions">
+            <a class="btn btn-dark btn-block" href="https://github.com/ANIS151993" target="_blank" rel="noreferrer">Open GitHub profile</a>
+            <a class="btn btn-dark btn-block" href="https://youtu.be/O_pLEz7cyaY" target="_blank" rel="noreferrer">Open YouTube video</a>
+          </div>
+          <label class="gate-check"><input id="gate-github" type="checkbox"> I followed the GitHub profile.</label>
+          <label class="gate-check"><input id="gate-youtube" type="checkbox"> I subscribed to the YouTube channel.</label>
+          <div class="gate-actions">
+            <button class="btn btn-primary btn-block" id="gate-next-1" type="button" onclick="continueGate(2)">Continue</button>
+          </div>
+        </section>
+
+        <section class="download-step is-hidden" data-gate-step="2">
+          <span class="step-badge">Step 2</span>
+          <h4>Request the password</h4>
+          <p>Send a short request email so the author can verify the purpose of access before sharing the archive password.</p>
+          <a class="btn btn-dark btn-block" href="mailto:engr.aanis@gmail.com?subject=Password%20request%20for%20SIF-CCA%20research%20download">Email the author</a>
+          <div class="email-template">Subject: Password request for SIF-CCA research download
+
+Hello Md Anisur Rahman Chowdhury,
+I followed the GitHub profile, subscribed to the YouTube channel, and would like the password for the encrypted SIF-CCA research package.
+Name:
+Institution:
+Purpose of use:</div>
+          <button class="copy-btn" type="button" onclick="copyEmailTemplate(this)">Copy email template</button>
+          <label class="gate-check"><input id="gate-request" type="checkbox"> I sent the password request email.</label>
+          <div class="gate-actions">
+            <button class="btn btn-secondary btn-block" type="button" onclick="goToGateStep(1)">Back</button>
+            <button class="btn btn-primary btn-block" id="gate-next-2" type="button" onclick="continueGate(3)">Continue</button>
+          </div>
+        </section>
+
+        <section class="download-step is-hidden" data-gate-step="3">
+          <span class="step-badge">Step 3</span>
+          <h4>Enter the password</h4>
+          <p>The archives remain encrypted after download. Enter the password here to reveal the links once you have received it from the author.</p>
+          <input class="gate-input" id="gate-password" type="password" placeholder="Enter the archive password">
+          <p class="gate-error is-hidden" id="gate-error">The password is incorrect. Request the correct password from the author and try again.</p>
+          <div class="gate-actions">
+            <button class="btn btn-secondary btn-block" type="button" onclick="goToGateStep(2)">Back</button>
+            <button class="btn btn-primary btn-block" type="button" onclick="unlockDownloads()">Unlock downloads</button>
+          </div>
+        </section>
+
+        <section class="download-step is-hidden" data-gate-step="4">
+          <span class="step-badge">Unlocked</span>
+          <h4>Encrypted files ready</h4>
+          <p>These files are encrypted zip archives. The same password is still required after download to extract the contents.</p>
+          <div class="download-links">
+            <a class="btn btn-primary btn-block" href="assets/papers/SIF-CCA-Research-Paper-Encrypted.zip">Download encrypted conference PDF</a>
+            <a class="btn btn-secondary btn-block" href="assets/papers/SIF-CCA-LaTeX-Source-Encrypted.zip">Download encrypted LaTeX source</a>
+            <a class="btn btn-dark btn-block" href="report.html">Open public HTML report</a>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
