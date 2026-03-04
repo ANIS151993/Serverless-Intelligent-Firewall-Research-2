@@ -173,7 +173,7 @@ function closeGate() {
   }
 }
 
-function hasImplementationAccess() {
+function hasImplementationAccessToken() {
   try {
     return sessionStorage.getItem(IMPLEMENTATION_ACCESS_KEY) === "granted";
   } catch {
@@ -181,12 +181,24 @@ function hasImplementationAccess() {
   }
 }
 
-function grantImplementationAccess() {
+function grantImplementationAccessToken() {
   try {
     sessionStorage.setItem(IMPLEMENTATION_ACCESS_KEY, "granted");
   } catch {
     // Ignore storage restrictions and continue with current session unlock.
   }
+}
+
+function consumeImplementationAccessToken() {
+  if (!hasImplementationAccessToken()) {
+    return false;
+  }
+  try {
+    sessionStorage.removeItem(IMPLEMENTATION_ACCESS_KEY);
+  } catch {
+    // Best effort token consume.
+  }
+  return true;
 }
 
 function showImplementationGate() {
@@ -255,6 +267,7 @@ function syncImplementationGateButtons() {
 }
 
 async function unlockImplementationGuide() {
+  const overlay = byId("implementation-gate");
   const input = byId("impl-password");
   const error = byId("impl-error");
   if (!input) {
@@ -270,7 +283,13 @@ async function unlockImplementationGuide() {
   }
   const hash = await sha256(input.value.trim());
   if (hash === PASS_HASH) {
-    grantImplementationAccess();
+    const redirect = overlay?.dataset?.implRedirect || "";
+    if (redirect) {
+      grantImplementationAccessToken();
+      input.value = "";
+      window.location.href = redirect;
+      return;
+    }
     input.value = "";
     hideImplementationGate();
     return;
@@ -287,13 +306,7 @@ function initImplementationGate() {
     return;
   }
 
-  if (hasImplementationAccess()) {
-    hideImplementationGate();
-    return;
-  }
-
-  showImplementationGate();
-  syncImplementationGateButtons();
+  const gateMode = overlay.dataset.implMode || "page";
 
   ["impl-github", "impl-youtube", "impl-request"].forEach((id) => {
     const input = byId(id);
@@ -311,6 +324,25 @@ function initImplementationGate() {
       }
     });
   }
+
+  if (gateMode === "entry") {
+    document.querySelectorAll("[data-open-implementation-gate]").forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        showImplementationGate();
+        syncImplementationGateButtons();
+      });
+    });
+    return;
+  }
+
+  if (consumeImplementationAccessToken()) {
+    hideImplementationGate();
+    return;
+  }
+
+  showImplementationGate();
+  syncImplementationGateButtons();
 }
 
 function goToGateStep(step) {
