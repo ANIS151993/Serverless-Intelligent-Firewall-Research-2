@@ -145,17 +145,147 @@ async function sha256(value) {
 
 function toggleNav() {
   const links = byId("nav-links");
+  const toggle = document.querySelector(".nav-toggle");
   if (links) {
     links.classList.toggle("open");
+  }
+  if (toggle) {
+    toggle.classList.toggle("is-open");
   }
 }
 
 function closeNav() {
   const links = byId("nav-links");
+  const toggle = document.querySelector(".nav-toggle");
   if (links) {
     links.classList.remove("open");
   }
+  if (toggle) {
+    toggle.classList.remove("is-open");
+  }
 }
+
+/* ── Scroll progress bar ── */
+function updateScrollProgress() {
+  const bar = byId("scrollProgress");
+  if (!bar) return;
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+  bar.style.width = pct + "%";
+}
+
+/* ── Nav shrink on scroll ── */
+function updateNavScroll() {
+  const nav = byId("siteNav");
+  if (!nav) return;
+  if (window.scrollY > 60) {
+    nav.classList.add("scrolled");
+  } else {
+    nav.classList.remove("scrolled");
+  }
+}
+
+/* ── Back to top visibility ── */
+function updateBackToTop() {
+  const btn = byId("backToTop");
+  if (!btn) return;
+  if (window.scrollY > 400) {
+    btn.classList.add("is-visible");
+  } else {
+    btn.classList.remove("is-visible");
+  }
+}
+
+/* ── Scroll spy for active nav link ── */
+function initScrollSpy() {
+  const sections = document.querySelectorAll("section[id], header[id], .section[id], div[id]");
+  const navAnchors = document.querySelectorAll(".nav-links a[href^='#']");
+  if (!sections.length || !navAnchors.length) return;
+
+  const sectionMap = [];
+  navAnchors.forEach((a) => {
+    const id = a.getAttribute("href").replace("#", "");
+    const target = document.getElementById(id);
+    if (target) {
+      sectionMap.push({ el: target, link: a });
+    }
+  });
+
+  function update() {
+    const scrollY = window.scrollY + 120;
+    let current = null;
+    for (let i = sectionMap.length - 1; i >= 0; i--) {
+      if (sectionMap[i].el.offsetTop <= scrollY) {
+        current = sectionMap[i];
+        break;
+      }
+    }
+    navAnchors.forEach((a) => a.classList.remove("is-active"));
+    if (current) {
+      current.link.classList.add("is-active");
+    }
+  }
+
+  window.addEventListener("scroll", update, { passive: true });
+  update();
+
+  // Close mobile nav on link click
+  navAnchors.forEach((a) => {
+    a.addEventListener("click", closeNav);
+  });
+}
+
+/* ── Animated counters ── */
+function initAnimatedCounters() {
+  const counters = document.querySelectorAll(".metric-card strong");
+  if (!counters.length) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        if (el.dataset.counted) return;
+        el.dataset.counted = "1";
+
+        const text = el.textContent.trim();
+        const match = text.match(/^([\d.]+)(.*)$/);
+        if (!match) return;
+
+        const target = parseFloat(match[1]);
+        const suffix = match[2];
+        const isFloat = match[1].includes(".");
+        const decimals = isFloat ? (match[1].split(".")[1] || "").length : 0;
+        const duration = 1200;
+        const start = performance.now();
+
+        function tick(now) {
+          const elapsed = now - start;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const val = target * eased;
+          el.textContent = (isFloat ? val.toFixed(decimals) : Math.round(val)) + suffix;
+          if (progress < 1) requestAnimationFrame(tick);
+        }
+
+        el.textContent = (isFloat ? (0).toFixed(decimals) : "0") + suffix;
+        requestAnimationFrame(tick);
+      });
+    },
+    { threshold: 0.3 }
+  );
+
+  counters.forEach((c) => observer.observe(c));
+}
+
+/* ── Combined scroll handler ── */
+function onScroll() {
+  updateScrollProgress();
+  updateNavScroll();
+  updateBackToTop();
+}
+window.addEventListener("scroll", onScroll, { passive: true });
 
 function openGate() {
   const overlay = byId("download-gate");
@@ -1128,4 +1258,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initArchitectureExplorer();
   initArchitectureModes();
   initCharts();
+  initScrollSpy();
+  initAnimatedCounters();
+  onScroll();
 });

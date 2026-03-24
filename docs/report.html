@@ -13,10 +13,18 @@
   <script src="script.js" defer></script>
 </head>
 <body>
-  <nav class="site-nav">
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <nav class="site-nav" id="siteNav">
     <div class="nav-inner">
-      <a class="nav-brand" href="index.html">SIF Research-2</a>
-      <button class="nav-toggle" type="button" aria-label="Toggle navigation" onclick="toggleNav()">&#9776;</button>
+      <a class="nav-brand" href="index.html">
+        <span class="nav-brand-icon">SIF</span>
+        <span class="nav-brand-text">Research-2</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-label="Toggle navigation" onclick="toggleNav()">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
       <ul class="nav-links" id="nav-links">
         <li><a href="index.html">Portal</a></li>
         <li><a href="#summary">Summary</a></li>
@@ -341,5 +349,9 @@ Purpose of use:</div>
       </div>
     </div>
   </div>
+
+  <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M10 4L4 10M10 4L16 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
 </body>
 </html>
